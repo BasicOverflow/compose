@@ -16,6 +16,8 @@ services:
   app:
     image: nextcloud
     restart: always
+    user: root
+    userns_mode: host
     ports:
       - 8080:80
     links:
