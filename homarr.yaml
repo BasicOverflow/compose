@@ -6,7 +6,7 @@ services:
     container_name: homarr
     restart: unless-stopped
     ports:
-      - "8000:8000"
+      - "7575:7575"
     environment:
       - TZ=America/New_York # Set your desired timezone
     volumes:
