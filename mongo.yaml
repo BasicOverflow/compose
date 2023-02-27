@@ -5,7 +5,7 @@ services:
     image: mongo:4.4.6
     restart: unless-stopped
     environment:
-      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: iamroot6025
     ports:
       - "27017:27017"
@@ -16,7 +16,7 @@ services:
     image: mongo-express
     restart: unless-stopped
     environment:
-      ME_CONFIG_MONGODB_ADMINUSERNAME: admin
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
       ME_CONFIG_MONGODB_ADMINPASSWORD: iamroot6025
     ports:
       - "8081:8081"
