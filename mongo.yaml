@@ -34,10 +34,9 @@ services:
       - MONGO
     depends_on:
       - mongo
-      
-      
-# source: https://gist.github.com/adamelliotfields/cd49f056deab05250876286d7657dc4b
 
 networks:
   MONGO:
     name: MONGO
+
+# source: https://gist.github.com/adamelliotfields/cd49f056deab05250876286d7657dc4b
