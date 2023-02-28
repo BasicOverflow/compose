@@ -2,7 +2,7 @@ version: "3.5"
 
 services:
   mongo:
-  restart: unless-stopped
+    restart: unless-stopped
     image: mongo:4.4.6
     container_name: mongo
     environment:
