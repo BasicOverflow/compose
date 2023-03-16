@@ -9,4 +9,4 @@ services:
     ports:
       - '8001:8001'
     volumes:
-      - ./Users/ajeetraina/data/redisinsight:/db 
+      - /home/peter/redis:/db 
