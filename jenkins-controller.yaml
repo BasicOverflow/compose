@@ -15,8 +15,8 @@ services:
 
 # run the docker run commands on other machines to make them agents:
 # docker pull alpine/socat
-# $ docker run -d --restart=always \
-#     -p 127.0.0.1:2376:2375 \
+# $ docker run -d --restart=unless-stopped \
+#     -p 10.0.0.216:2376:2375 \
 #     -v /var/run/docker.sock:/var/run/docker.sock \
 #     alpine/socat \
 #     tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
