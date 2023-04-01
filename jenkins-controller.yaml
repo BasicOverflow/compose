@@ -16,6 +16,7 @@ services:
 # run this on a mahcine to make it a cloud agent for jenkins
 # docker run -d --restart=unless-stopped \
 #     -p 2376:2375 \
+#     -p 22:22 \
 #     -v /var/run/docker.sock:/var/run/docker.sock \
 #     alpine/socat \
 #     tcp-listen:2375,fork,reuseaddr unix-connect:/var/run/docker.sock
