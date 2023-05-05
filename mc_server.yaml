@@ -7,9 +7,14 @@ services:
       - 25566:25565
     environment:
       EULA: "TRUE"
+      # MEMORY: "6GB"
+      #JVM_XX_OPTS: "-XX:MaxRAMPercentage=100"
+      
+      
     tty: true
     stdin_open: true
     restart: unless-stopped
     volumes:
-      # attach a directory relative to the directory containing this compose file
       - /home/peter/mc_server2:/data
+
+
