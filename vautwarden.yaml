@@ -1,0 +1,9 @@
+version: '3'
+services:
+  vaultwarden:
+    image: vaultwarden/server:latest
+    container_name: vaultwarden
+    volumes:
+      - /home/peter/vaultwarden:/data/
+    ports:
+      - 7565:80
