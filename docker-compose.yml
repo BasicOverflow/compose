@@ -8,6 +8,7 @@ services:
       - "8085:8080"
     volumes:
       - ./config:/app/config
+      - /config/glance.yml:/app/config/glance.yml
       - /var/run/docker.sock:/var/run/docker.sock:ro
     environment:
       - TZ=US/New_York
