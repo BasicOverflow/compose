@@ -1,0 +1,337 @@
+# Glance Configuration
+# This is the main configuration file for your dashboard
+
+# Server configuration
+server:
+  host: 0.0.0.0
+  port: 8080
+
+# Theme configuration - Obsidian-inspired dark theme
+theme:
+  background-color: 0 0 8
+  primary-color: 220 13 91
+  positive-color: 135 94 66
+  negative-color: 0 100 67
+  contrast-multiplier: 1.2
+  presets:
+    obsidian-purple:
+      background-color: 0 0 8
+      primary-color: 265 89 79
+      positive-color: 135 94 66
+      negative-color: 0 100 67
+      contrast-multiplier: 1.2
+
+# Pages configuration
+pages:
+  - name: Infrastructure
+    columns:
+      - size: small
+        widgets:
+          # System Monitoring - Base Infra (compact, no Portainer)
+          - type: monitor
+            size: small
+            title: "Base Infra Monitoring"
+            cache: 3s
+            sites:
+              - title: "Proxmox Aitherios"
+                url: "https://10.0.0.225:8006"
+                timeout: 0.5s
+                allow-insecure: true
+              - title: "Proxmox Sterianos"
+                url: "https://10.0.0.10:8006"
+                timeout: 0.5s
+                allow-insecure: true
+              - title: "Proxmox Phidios"
+                url: "https://10.0.0.154:8006"
+                timeout: 0.5s
+                allow-insecure: true
+              - title: "Nginx Proxy Manager"
+                url: "http://10.0.0.136:81"
+                timeout: 0.5s
+              - title: "Rancher"
+                url: "https://10.0.1.50:443"
+                timeout: 0.5s
+                allow-insecure: true
+              - title: "Longhorn"
+                url: "http://10.0.1.51"
+                timeout: 0.5s
+
+          # Database Monitoring (bottom left, compact, no Neo4j)
+          - type: monitor
+            size: small
+            title: "Database Monitoring"
+            cache: 3s
+            sites:
+              - title: "Mongodb"
+                url: "http://dummy.local"
+                timeout: 0.5s
+              - title: "Postgres-fast"
+                url: "http://dummy.local"
+                timeout: 0.5s
+              - title: "Postgres-slow"
+                url: "http://dummy.local"
+                timeout: 0.5s
+              - title: "Minio"
+                url: "http://dummy.local"
+                timeout: 0.5s
+
+      - size: full
+        widgets:
+          # NAS Bookmarks
+          - type: bookmarks
+            title: "NAS"
+            groups:
+              - links:
+                  - title: "Truenas"
+                    url: "http://10.0.220.145"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/truenas.png"
+                  - title: "Syncthing"
+                    url: "http://10.0.220.145:8384"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/resiliosync.png"
+                  - title: "NAS Filebrowser"
+                    url: "http://10.0.220.145:8080"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
+                  - title: "Portainer NAS"
+                    url: "https://10.0.220.145:31015"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
+
+          # Base Infra Bookmarks
+          - type: bookmarks
+            title: "Base Infra"
+            groups:
+              - links:
+                  - title: "Proxmox Aitherios"
+                    url: "https://10.0.0.225:8006"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/proxmox.png"
+                  - title: "Proxmox Sterianos"
+                    url: "https://10.0.0.10:8006"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/proxmox.png"
+                  - title: "Proxmox Phidios"
+                    url: "https://10.0.0.154:8006"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/proxmox.png"
+                  - title: "Portainer (webforge)"
+                    url: "http://10.0.0.54:9000"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
+                  - title: "Portainer Master"
+                    url: "http://10.0.9.28:9000"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
+                  - title: "Nginx Proxy Manager"
+                    url: "http://10.0.0.136:81"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/nginx-proxy-manager.png"
+                  - title: "Rancher"
+                    url: "https://10.0.1.50:443"
+                    icon: "https://www.rancher.com/assets/img/logos/rancher-suse-logo-horizontal-color.svg"
+                  - title: "Longhorn"
+                    url: "http://10.0.1.51"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/longhorn.png"
+
+          # Databases Bookmarks
+          - type: bookmarks
+            title: "Databases"
+            groups:
+              - links:
+                  - title: "RedisInsight"
+                    url: "http://10.0.0.54:8023/"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/redis.png"
+                  - title: "Admin-Mongo"
+                    url: "http://10.0.0.54:1234/"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
+                  - title: "pgAdmin4"
+                    url: "http://10.0.0.54:5050"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/pgadmin.png"
+                  - title: "MINIO-S3-Console"
+                    url: "http://10.0.0.251:9002/"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/minio.png"
+                  - title: "Neo4j"
+                    url: "http://10.0.0.216:7474/browser"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/neo4j.png"
+
+      - size: small
+        widgets:
+          # NAS Monitoring (right top, compact)
+          - type: monitor
+            size: small
+            title: "NAS Monitoring"
+            cache: 3s
+            sites:
+              - title: "Truenas"
+                url: "http://10.0.220.145"
+                timeout: 0.5s
+              - title: "Syncthing"
+                url: "http://10.0.220.145:8384"
+                timeout: 0.5s
+              - title: "NAS Filebrowser"
+                url: "http://10.0.220.145:8080"
+                timeout: 0.5s
+
+          # Markets and External Bookmarks
+          - type: markets
+            title: "Markets"
+            markets:
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: SOL-USD
+                name: Solana
+              - symbol: TSLA
+                name: Tesla
+              - symbol: MSTR
+                name: MicroStrategy
+          - type: bookmarks
+            title: "External"
+            groups:
+              - links:
+                  - title: "Cloudflare Dashboard"
+                    url: "https://dash.cloudflare.com"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/cloudflare.png"
+                  - title: "Google Domains"
+                    url: "https://domains.google"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/google.png"
+                  - title: "Homelab Github"
+                    url: "https://github.com/BasicOverflow/compose"
+                    icon: "si:github"
+
+  - name: Media&Misc.
+    columns:
+      - size: small
+        widgets:
+          # Media Services Monitoring (with MeTube VM only)
+          - type: monitor
+            size: small
+            title: "Media Services Monitoring"
+            cache: 3s
+            sites:
+              - title: "JellyFin"
+                url: "http://10.0.0.251:8096"
+                timeout: 0.5s
+              - title: "Radarr"
+                url: "http://10.0.0.251:7878"
+                timeout: 0.5s
+              - title: "Sonarr"
+                url: "http://10.0.0.251:30027"
+                timeout: 0.5s
+              - title: "Prowlarr"
+                url: "http://10.0.0.251:9696"
+                timeout: 0.5s
+              - title: "Jellyseerr"
+                url: "http://10.0.0.251:10241"
+                timeout: 0.5s
+              - title: "QBittorrent"
+                url: "http://10.0.0.12:8080//"
+                timeout: 0.5s
+              - title: "MeTube VM"
+                url: "http://dummy.local"
+                timeout: 0.5s
+
+          # Miscellaneous Bookmarks (including Fileshelter)
+          - type: bookmarks
+            title: "Miscellaneous"
+            groups:
+              - links:
+                  - title: "Immich"
+                    url: "http://10.0.220.145:2283"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/immich-kiosk.svg"
+                  - title: "Vault-Warden"
+                    url: "https://vault.basicoverflow.com"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
+                  - title: "Fileshelter"
+                    url: "https://fileshare.basicoverflow.com"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/files.png"
+
+      - size: full
+        widgets:
+          # Financial News Feed (top middle, filtered, compact)
+          - type: rss
+            title: "Financial News"
+            style: horizontal-cards
+            feeds:
+              - url: "https://feeds.finance.yahoo.com/rss/2.0/headline?s=BTC-USD,TSLA,MSTR&region=US&lang=en-US"
+                title: "Yahoo Finance"
+              - url: "https://feeds.bloomberg.com/markets/news.rss"
+                title: "Bloomberg"
+              - url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
+                title: "CNBC"
+              - url: "https://www.marketwatch.com/rss/topstories"
+                title: "MarketWatch"
+              - url: "https://seekingalpha.com/feed.xml"
+                title: "Seeking Alpha"
+              - url: "https://techcrunch.com/feed/"
+                title: "TechCrunch"
+            horizontal: true
+            thumbnail-height: 6
+            collapse-after: 1
+
+          # Media Services Bookmarks
+          - type: bookmarks
+            title: "Media Services"
+            groups:
+              - links:
+                  - title: "JellyFin"
+                    url: "http://10.0.0.251:8096"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
+                  - title: "Radarr"
+                    url: "http://10.0.0.251:7878"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/plexrequests.png"
+                  - title: "Sonarr"
+                    url: "http://10.0.0.251:30027"
+                    icon: "https://imgs.search.brave.com/vOM_CuUv4odKuDHqc3LR_Vzn929B_dbZ6tbzyjiNxbM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mbGVl/dC5saW51eHNlcnZl/ci5pby9pbWFnZXMv/bGludXhzZXJ2ZXJf/c29uYXJyLnBuZw"
+                  - title: "Prowlarr"
+                    url: "http://10.0.0.251:9696"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/prowlarr.png"
+                  - title: "Jellyseerr"
+                    url: "http://10.0.0.251:10241"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png"
+                  - title: "QBittorrent"
+                    url: "http://10.0.0.12:8080//"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png"
+
+          # MeTube Instances Bookmarks
+          - type: bookmarks
+            title: "MeTube Instances"
+            groups:
+              - links:
+                  - title: "MeTube-Other"
+                    url: "http://10.0.0.251:30094/"
+                    icon: "https://raw.githubusercontent.com/alexta69/metube/master/ui/src/favicon.ico"
+                  - title: "MeTube-Tech"
+                    url: "http://10.0.0.251:30095"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+                  - title: "MeTube-Business"
+                    url: "http://10.0.0.251:30088"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+                  - title: "MeTube-Orthodoxy"
+                    url: "http://10.0.0.251:30096"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+                  - title: "MeTube-Humanities"
+                    url: "http://10.0.0.251:30097"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+                  - title: "MeTube-History"
+                    url: "http://10.0.0.251:30098"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+
+      - size: small
+        widgets:
+          # Markets - Crypto
+          - type: markets
+            title: "Crypto"
+            markets:
+              - symbol: BTC-USD
+                name: Bitcoin
+              - symbol: SOL-USD
+                name: Solana
+              - symbol: ETH-USD
+                name: Ethereum
+
+          # Markets - Stocks
+          - type: markets
+            title: "Stocks"
+            markets:
+              - symbol: TSLA
+                name: Tesla
+              - symbol: MSTR
+                name: MicroStrategy
+              - symbol: NVDA
+                name: NVIDIA
+              - symbol: AMD
+                name: AMD
+              - symbol: SSK
+                name: SSK 

@@ -1,0 +1,114 @@
+# Applications converted from Homarr configuration - Clickable Links
+- type: bookmarks
+  title: "Development & Admin"
+  groups:
+    - links:
+        - title: "VS Code Admin"
+          url: "http://10.0.0.138:8080/login"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/vscode.png"
+        - title: "OpenWebUI"
+          url: "http://10.0.0.216:3000"
+          icon: "http://10.0.0.216:3000/favicon.png"
+        - title: "Vault-Warden"
+          url: "https://vault.basicoverflow.com"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
+
+- type: bookmarks
+  title: "File Management"
+  groups:
+    - links:
+        - title: "Filebrowser SFTP"
+          url: "http://10.0.0.28:8001/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
+        - title: "SFTP"
+          url: "http://10.0.0.28:8081/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+        - title: "sftpgo"
+          url: "http://10.0.0.28:8888/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/nextcloud-files.png"
+        - title: "Fileshelter"
+          url: "https://fileshare.basicoverflow.com"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/files.png"
+
+- type: bookmarks
+  title: "Media Services"
+  groups:
+    - links:
+        - title: "JellyFin"
+          url: "http://10.0.0.251:8096"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
+        - title: "Radarr"
+          url: "http://10.0.0.251:7878"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/plexrequests.png"
+        - title: "Sonarr"
+          url: "http://10.0.0.251:30027"
+          icon: "https://imgs.search.brave.com/vOM_CuUv4odKuDHqc3LR_Vzn929B_dbZ6tbzyjiNxbM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mbGVl/dC5saW51eHNlcnZl/ci5pby9pbWFnZXMv/bGludXhzZXJ2ZXJf/c29uYXJyLnBuZw"
+        - title: "Prowlarr"
+          url: "http://10.0.0.251:9696"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/prowlarr.png"
+        - title: "Jellyseerr"
+          url: "http://10.0.0.251:10241"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png"
+        - title: "QBittorrent"
+          url: "http://10.0.0.12:8080//"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png"
+
+- type: bookmarks
+  title: "MeTube Instances"
+  groups:
+    - links:
+        - title: "MeTube-Other"
+          url: "http://10.0.0.251:30094/"
+          icon: "https://raw.githubusercontent.com/alexta69/metube/master/ui/src/favicon.ico"
+        - title: "MeTube-Tech"
+          url: "http://10.0.0.251:30095"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+        - title: "MeTube-Business"
+          url: "http://10.0.0.251:30088"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+        - title: "MeTube-Orthodoxy"
+          url: "http://10.0.0.251:30096"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+        - title: "MeTube-Humanities"
+          url: "http://10.0.0.251:30097"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+        - title: "MeTube-History"
+          url: "http://10.0.0.251:30098"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
+
+- type: bookmarks
+  title: "Databases"
+  groups:
+    - links:
+        - title: "RedisInsight"
+          url: "http://10.0.0.54:8023/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/redis.png"
+        - title: "Admin-Mongo"
+          url: "http://10.0.0.54:1234/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
+        - title: "pgAdmin4"
+          url: "http://10.0.0.54:5050"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/pgadmin.png"
+        - title: "Neo4j"
+          url: "http://10.0.0.216:7474/browser"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/neo4j.png"
+        - title: "MINIO-S3-Console"
+          url: "http://10.0.0.251:9002/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/minio.png"
+
+- type: bookmarks
+  title: "Infrastructure"
+  groups:
+    - links:
+        - title: "Longhorn"
+          url: "http://10.0.1.51"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/longhorn.png"
+        - title: "Rancher"
+          url: "https://10.0.1.50:443"
+          icon: "https://www.rancher.com/assets/img/logos/rancher-suse-logo-horizontal-color.svg"
+        - title: "Syncthing"
+          url: "http://10.0.220.145:8384"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/resiliosync.png"
+        - title: "Immich"
+          url: "http://10.0.220.145:2283"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/immich-kiosk.svg" 

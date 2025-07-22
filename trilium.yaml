@@ -1,9 +1,0 @@
-version: "3.3"
-
-services:
-  trilium:
-    ports:
-      - '8482:8080'
-    volumes:
-      - /home/peter/trillium:/home/node/trilium-data
-    image: 'zadam/trilium'
