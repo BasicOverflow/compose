@@ -81,24 +81,6 @@ pages:
 
       - size: full
         widgets:
-          # NAS Bookmarks
-          - type: bookmarks
-            title: "NAS"
-            groups:
-              - links:
-                  - title: "Truenas"
-                    url: "http://10.0.220.145"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/truenas.png"
-                  - title: "Syncthing"
-                    url: "http://10.0.220.145:8384"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/resiliosync.png"
-                  - title: "NAS Filebrowser"
-                    url: "http://10.0.220.145:8080"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
-                  - title: "Portainer NAS"
-                    url: "https://10.0.220.145:31015"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
-
           # Base Infra Bookmarks
           - type: bookmarks
             title: "Base Infra"
@@ -119,6 +101,9 @@ pages:
                   - title: "Portainer Master"
                     url: "http://10.0.9.28:9000"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
+                  - title: "Filebrowser"
+                    url: "http://10.0.2.247:8080/"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
                   - title: "Nginx Proxy Manager"
                     url: "http://10.0.0.136:81"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/nginx-proxy-manager.png"
@@ -168,18 +153,25 @@ pages:
                 url: "http://10.0.220.145:8080"
                 timeout: 1s
 
-          # Markets and External Bookmarks
-          - type: markets
-            title: "Markets"
-            markets:
-              - symbol: BTC-USD
-                name: Bitcoin
-              - symbol: SOL-USD
-                name: Solana
-              - symbol: TSLA
-                name: Tesla
-              - symbol: MSTR
-                name: MicroStrategy
+          # NAS Bookmarks
+          - type: bookmarks
+            title: "NAS"
+            groups:
+              - links:
+                  - title: "Truenas"
+                    url: "http://10.0.220.145"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/truenas.png"
+                  - title: "Syncthing"
+                    url: "http://10.0.220.145:8384"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/resiliosync.png"
+                  - title: "NAS Filebrowser"
+                    url: "http://10.0.220.145:8080"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
+                  - title: "Portainer NAS"
+                    url: "https://10.0.220.145:31015"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
+
+          # External Bookmarks
           - type: bookmarks
             title: "External"
             groups:
