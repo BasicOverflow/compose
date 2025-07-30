@@ -126,7 +126,7 @@ pages:
                     url: "http://10.0.0.54:1234/"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
                   - title: "pgAdmin4"
-                    url: "http://10.0.0.54:5050"
+                    url: "http://10.0.2.247:5050"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/pgadmin.png"
                   - title: "MINIO-S3-Console"
                     url: "http://10.0.0.251:9002/"
