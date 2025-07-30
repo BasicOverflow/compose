@@ -101,7 +101,7 @@ pages:
                   - title: "Portainer Master"
                     url: "http://10.0.9.28:9000"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
-                  - title: "Filebrowser"
+                  - title: "Misc Host Filebrowser"
                     url: "http://10.0.2.247:8080/"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
                   - title: "Nginx Proxy Manager"
