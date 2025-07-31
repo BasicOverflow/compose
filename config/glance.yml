@@ -119,11 +119,8 @@ pages:
             title: "Databases"
             groups:
               - links:
-                  - title: "RedisInsight"
-                    url: "http://10.0.0.54:8023/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/redis.png"
                   - title: "Admin-Mongo"
-                    url: "http://10.0.0.54:1234/"
+                    url: "http://10.0.2.247:1234/"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
                   - title: "pgAdmin4"
                     url: "http://10.0.2.247:5050"
@@ -229,9 +226,6 @@ pages:
                   - title: "Vault-Warden"
                     url: "https://vault.basicoverflow.com"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
-                  - title: "Fileshelter"
-                    url: "https://fileshare.basicoverflow.com"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/files.png"
 
       - size: full
         widgets:

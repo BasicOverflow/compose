@@ -80,11 +80,8 @@
   title: "Databases"
   groups:
     - links:
-        - title: "RedisInsight"
-          url: "http://10.0.0.54:8023/"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/redis.png"
         - title: "Admin-Mongo"
-          url: "http://10.0.0.54:1234/"
+          url: "http://10.0.2.247:1234/"
           icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
         - title: "pgAdmin4"
           url: "http://10.0.0.54:5050"
