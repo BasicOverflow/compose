@@ -1,0 +1,7 @@
+version: "3.9"
+services:
+  ghostboard:
+    image: thehelpfulidiot/ghostboard-server
+    ports:
+      - "8082:80"
+    restart: unless-stopped
