@@ -223,27 +223,6 @@ pages:
 
       - size: full
         widgets:
-          # Financial News Feed (top middle, filtered, compact)
-          - type: rss
-            title: "Financial News"
-            style: horizontal-cards
-            feeds:
-              - url: "https://feeds.finance.yahoo.com/rss/2.0/headline?s=BTC-USD,TSLA,MSTR&region=US&lang=en-US"
-                title: "Yahoo Finance"
-              - url: "https://feeds.bloomberg.com/markets/news.rss"
-                title: "Bloomberg"
-              - url: "https://www.cnbc.com/id/100003114/device/rss/rss.html"
-                title: "CNBC"
-              - url: "https://www.marketwatch.com/rss/topstories"
-                title: "MarketWatch"
-              - url: "https://seekingalpha.com/feed.xml"
-                title: "Seeking Alpha"
-              - url: "https://techcrunch.com/feed/"
-                title: "TechCrunch"
-            horizontal: true
-            thumbnail-height: 6
-            collapse-after: 1
-
           # Media Services Bookmarks
           - type: bookmarks
             title: "Media Services"
