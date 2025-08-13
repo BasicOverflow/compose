@@ -67,16 +67,16 @@ pages:
             cache: 3s
             sites:
               - title: "Mongodb"
-                url: "http://dummy.local"
+                url: "http://10.0.220.145:27017"
                 timeout: 1s
               - title: "Postgres-fast"
-                url: "http://dummy.local"
+                url: "http://10.0.220.145:5432"
                 timeout: 1s
               - title: "Postgres-slow"
-                url: "http://dummy.local"
+                url: "http://10.0.220.145:5432"
                 timeout: 1s
               - title: "Minio"
-                url: "http://dummy.local"
+                url: "http://10.0.220.145:9000"
                 timeout: 1s
 
       - size: full
@@ -225,7 +225,7 @@ pages:
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
                   - title: "GhostBoard"
                     url: "http://10.0.2.247:8081/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/ghost.png"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/notes.png"
 
       - size: full
         widgets:
