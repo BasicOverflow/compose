@@ -72,11 +72,13 @@ pages:
               - title: "Postgres-fast"
                 url: "http://10.0.220.145:5432"
                 timeout: 1s
+                allow-insecure: true
               - title: "Postgres-slow"
                 url: "http://10.0.220.145:5432"
                 timeout: 1s
-              - title: "Minio"
-                url: "http://10.0.220.145:9000"
+                allow-insecure: true
+              - title: "Minio Console"
+                url: "http://10.0.220.145:9001"
                 timeout: 1s
 
       - size: full
