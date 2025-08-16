@@ -1,0 +1,24 @@
+
+services:
+  management:
+    image: netbirdio/management:latest
+    container_name: netbird-management
+    restart: unless-stopped
+    ports:
+      - "443:443"
+    environment:
+      NB_DOMAIN: "vpn.mydomain.com"       # your domain
+      NB_HTTP_BIND_ADDRESS: ":443"
+      NB_DISABLE_ANALYTICS: "true"
+      NB_DISABLE_FORCE_HTTPS: "false"
+      NB_LOG_LEVEL: "info"
+    volumes:
+      - /home/peter/netbird:/var/lib/netbird
+
+  signal:
+    image: netbirdio/signal:latest
+    container_name: netbird-signal
+    restart: unless-stopped
+    ports:
+      - "10000:10000/udp" # Peer discovery signaling
+
