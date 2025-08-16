@@ -7,13 +7,15 @@ services:
     ports:
       - "443:443"
     environment:
-      NB_DOMAIN: "vpn.mydomain.com"       # your domain
+      NB_DOMAIN: "netbird.basicoverflow.com"       # your domain
       NB_HTTP_BIND_ADDRESS: ":443"
       NB_DISABLE_ANALYTICS: "true"
       NB_DISABLE_FORCE_HTTPS: "false"
       NB_LOG_LEVEL: "info"
     volumes:
       - /home/peter/netbird:/var/lib/netbird
+      - /home/peter/netbird/management.json:/etc/netbird/management.json
+
 
   signal:
     image: netbirdio/signal:latest
