@@ -1,6 +1,7 @@
 version: '3'
 services:
   vaultwarden:
+    restart: unless-stopped
     image: vaultwarden/server:latest
     container_name: vaultwarden
     volumes:
