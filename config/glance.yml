@@ -178,32 +178,32 @@ pages:
     columns:
       - size: small
         widgets:
-          # Media Services Monitoring (with MeTube VM only)
+          # Media Services Monitoring
           - type: monitor
             size: small
             title: "Media Services Monitoring"
             cache: 3s
             sites:
-              - title: "JellyFin"
-                url: "http://10.0.0.251:8096"
+              - title: "qBittorrent"
+                url: "http://10.0.75.113:8080"
                 timeout: 1s
               - title: "Radarr"
-                url: "http://10.0.0.251:7878"
+                url: "http://10.0.75.113:7878"
                 timeout: 1s
               - title: "Sonarr"
-                url: "http://10.0.0.251:30027"
+                url: "http://10.0.75.113:8989"
                 timeout: 1s
               - title: "Prowlarr"
-                url: "http://10.0.0.251:9696"
+                url: "http://10.0.75.113:9696"
+                timeout: 1s
+              - title: "Jellyfin"
+                url: "http://10.0.75.113:8096"
                 timeout: 1s
               - title: "Jellyseerr"
-                url: "http://10.0.0.251:10241"
+                url: "http://10.0.75.113:5055"
                 timeout: 1s
-              - title: "QBittorrent"
-                url: "http://10.0.0.12:8080//"
-                timeout: 1s
-              - title: "MeTube VM"
-                url: "http://dummy.local"
+              - title: "ExpressVPN"
+                url: "http://10.0.75.113:6881"
                 timeout: 1s
 
           # Miscellaneous Bookmarks (including Fileshelter)
@@ -228,24 +228,27 @@ pages:
             title: "Media Services"
             groups:
               - links:
-                  - title: "JellyFin"
-                    url: "http://10.0.0.251:8096"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
+                  - title: "qBittorrent"
+                    url: "http://10.0.75.113:8080"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png"
                   - title: "Radarr"
-                    url: "http://10.0.0.251:7878"
+                    url: "http://10.0.75.113:7878"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/plexrequests.png"
                   - title: "Sonarr"
-                    url: "http://10.0.0.251:30027"
+                    url: "http://10.0.75.113:8989"
                     icon: "https://imgs.search.brave.com/vOM_CuUv4odKuDHqc3LR_Vzn929B_dbZ6tbzyjiNxbM/rs:fit:500:0:0/g:ce/aHR0cHM6Ly9mbGVl/dC5saW51eHNlcnZl/ci5pby9pbWFnZXMv/bGludXhzZXJ2ZXJf/c29uYXJyLnBuZw"
                   - title: "Prowlarr"
-                    url: "http://10.0.0.251:9696"
+                    url: "http://10.0.75.113:9696"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/prowlarr.png"
+                  - title: "Jellyfin"
+                    url: "http://10.0.75.113:8096"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
+                  - title: "Jellyfin HTTPS"
+                    url: "https://10.0.75.113:8920"
+                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
                   - title: "Jellyseerr"
-                    url: "http://10.0.0.251:10241"
+                    url: "http://10.0.75.113:5055"
                     icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png"
-                  - title: "QBittorrent"
-                    url: "http://10.0.0.12:8080//"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png"
 
           # MeTube Instances Bookmarks
           - type: bookmarks
