@@ -196,11 +196,11 @@ pages:
               - title: "Prowlarr"
                 url: "http://10.0.75.113:9696"
                 timeout: 1s
-              - title: "Jellyfin"
-                url: "http://10.0.75.113:8096"
+              - title: "Jellyfin (Public)"
+                url: "http://jellyfin.basicoverflow.com"
                 timeout: 1s
-              - title: "Jellyseerr"
-                url: "http://10.0.75.113:5055"
+              - title: "Jellyseer (Public)"
+                url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
               - title: "ExpressVPN"
                 url: "http://10.0.75.113:8080"
