@@ -203,7 +203,7 @@ pages:
                 url: "http://10.0.75.113:5055"
                 timeout: 1s
               - title: "ExpressVPN"
-                url: "http://10.0.75.113:6881"
+                url: "http://10.0.75.113:8080"
                 timeout: 1s
 
           # Miscellaneous Bookmarks (including Fileshelter)
