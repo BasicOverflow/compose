@@ -2,6 +2,7 @@ version: '3'
 
 services:
   adminmongo:
+    restart: unless-stopped
     image: mrvautin/adminmongo
     ports:
       - 1234:1234
