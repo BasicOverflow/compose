@@ -31,10 +31,37 @@ pages:
     columns:
       - size: small
         widgets:
-          # System Monitoring - Base Infra (compact, no Portainer)
+          # Database Monitoring
           - type: monitor
             size: small
-            title: "Base Infra Monitoring"
+            title: "Database"
+            cache: 3s
+            sites:
+              - title: "Mongodb"
+                url: "http://10.0.220.145:27017"
+                timeout: 1s
+              - title: "Minio Console"
+                url: "http://10.0.220.145:9001"
+                timeout: 1s
+              - title: "Admin-Mongo"
+                url: "http://10.0.2.247:1234/"
+                timeout: 1s
+              - title: "pgAdmin4"
+                url: "http://10.0.2.247:5050"
+                timeout: 1s
+              - title: "MINIO-S3-Console"
+                url: "http://10.0.0.251:9002/"
+                timeout: 1s
+              - title: "Neo4j"
+                url: "http://10.0.0.216:7474/browser"
+                timeout: 1s
+
+      - size: full
+        widgets:
+          # Base Infra (combined)
+          - type: monitor
+            size: small
+            title: "Base Infra"
             cache: 3s
             sites:
               - title: "Proxmox Aitherios"
@@ -59,40 +86,6 @@ pages:
               - title: "Longhorn"
                 url: "http://10.0.1.51"
                 timeout: 1s
-
-      - size: full
-        widgets:
-          # Database Monitoring
-          - type: monitor
-            size: small
-            title: "Database Monitoring"
-            cache: 3s
-            sites:
-              - title: "Mongodb"
-                url: "http://10.0.220.145:27017"
-                timeout: 1s
-              - title: "Minio Console"
-                url: "http://10.0.220.145:9001"
-                timeout: 1s
-              - title: "Admin-Mongo"
-                url: "http://10.0.2.247:1234/"
-                timeout: 1s
-              - title: "pgAdmin4"
-                url: "http://10.0.2.247:5050"
-                timeout: 1s
-              - title: "MINIO-S3-Console"
-                url: "http://10.0.0.251:9002/"
-                timeout: 1s
-              - title: "Neo4j"
-                url: "http://10.0.0.216:7474/browser"
-                timeout: 1s
-
-          # Base Infra Additional Monitoring
-          - type: monitor
-            size: small
-            title: "Base Infra Additional"
-            cache: 3s
-            sites:
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
                 timeout: 1s
@@ -105,7 +98,7 @@ pages:
           # NAS Monitoring
           - type: monitor
             size: small
-            title: "NAS Monitoring"
+            title: "NAS"
             cache: 3s
             sites:
               - title: "Truenas"
@@ -142,10 +135,28 @@ pages:
     columns:
       - size: small
         widgets:
+          # Miscellaneous Services Monitoring
+          - type: monitor
+            size: small
+            title: "Miscellaneous Services"
+            cache: 3s
+            sites:
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "GhostBoard"
+                url: "http://10.0.2.247:8081/"
+                timeout: 1s
+
+      - size: full
+        widgets:
           # Media Services Monitoring
           - type: monitor
             size: small
-            title: "Media Services Monitoring"
+            title: "Media Services"
             cache: 3s
             sites:
               - title: "qBittorrent"
@@ -171,24 +182,6 @@ pages:
                 timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
-                timeout: 1s
-
-      - size: full
-        widgets:
-          # Miscellaneous Services Monitoring
-          - type: monitor
-            size: small
-            title: "Miscellaneous Services"
-            cache: 3s
-            sites:
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
-                timeout: 1s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 1s
-              - title: "GhostBoard"
-                url: "http://10.0.2.247:8081/"
                 timeout: 1s
 
       - size: small
