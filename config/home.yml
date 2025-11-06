@@ -3,12 +3,6 @@
   title: "Development & Admin"
   groups:
     - links:
-        - title: "VS Code Admin"
-          url: "http://10.0.0.138:8080/login"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/vscode.png"
-        - title: "OpenWebUI"
-          url: "http://10.0.0.216:3000"
-          icon: "http://10.0.0.216:3000/favicon.png"
         - title: "Vault-Warden"
           url: "https://vault.basicoverflow.com"
           icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
@@ -54,26 +48,11 @@
           icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/qbittorrent.png"
 
 - type: bookmarks
-  title: "MeTube Instances"
+  title: "MeTube"
   groups:
     - links:
-        - title: "MeTube-Other"
-          url: "http://10.0.0.251:30094/"
-          icon: "https://raw.githubusercontent.com/alexta69/metube/master/ui/src/favicon.ico"
-        - title: "MeTube-Tech"
-          url: "http://10.0.0.251:30095"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
-        - title: "MeTube-Business"
-          url: "http://10.0.0.251:30088"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
-        - title: "MeTube-Orthodoxy"
-          url: "http://10.0.0.251:30096"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
-        - title: "MeTube-Humanities"
-          url: "http://10.0.0.251:30097"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
-        - title: "MeTube-History"
-          url: "http://10.0.0.251:30098"
+        - title: "MeTube"
+          url: "http://10.0.75.113:8501/"
           icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/metube.png"
 
 - type: bookmarks
