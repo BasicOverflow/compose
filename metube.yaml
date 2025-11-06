@@ -1,86 +1,18 @@
-version: "3.9"
 
 services:
-  metube_history:
-    container_name: metube_history
-    image: metube/metube:latest
+  metube:
+    container_name: metube
+    image: alexta69/metube:latest
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/Berlin
+      - CUSTOM_DIRS=true             # enable UI directory selection
+      - CREATE_CUSTOM_DIRS=true      # allow creating new directories from UI
+      - DOWNLOAD_MODE=concurrent     # optional, downloads immediately
+      - MAX_CONCURRENT_DOWNLOADS=50  # optional, if using limited mode
     volumes:
-      - /mnt/Stripe1TB/media/yt_history:/media
-      - /mnt/Stripe1TB/metube_history-config:/config
+      - /mnt/Stripe1TB/media/youtube_videos:/downloads/youtube_videos
     ports:
-      - 8081:8080
-    restart: unless-stopped
-
-  metube_business:
-    container_name: metube_business
-    image: metube/metube:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - /mnt/Stripe1TB/media/yt_business:/media
-      - /mnt/Stripe1TB/metube_business-config:/config
-    ports:
-      - 8082:8080
-    restart: unless-stopped
-
-  metube_humanities:
-    container_name: metube_humanities
-    image: metube/metube:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - /mnt/Stripe1TB/media/yt_humanities:/media
-      - /mnt/Stripe1TB/metube_humanities-config:/config
-    ports:
-      - 8083:8080
-    restart: unless-stopped
-
-  metube_orthodoxy:
-    container_name: metube_orthodoxy
-    image: metube/metube:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - /mnt/Stripe1TB/media/yt_orthodoxy:/media
-      - /mnt/Stripe1TB/metube_orthodoxy-config:/config
-    ports:
-      - 8084:8080
-    restart: unless-stopped
-
-  metube_technology:
-    container_name: metube_technology
-    image: metube/metube:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - /mnt/Stripe1TB/media/yt_technology:/media
-      - /mnt/Stripe1TB/metube_technology-config:/config
-    ports:
-      - 8085:8080
-    restart: unless-stopped
-
-  metube_vids:
-    container_name: metube_vids
-    image: metube/metube:latest
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/Berlin
-    volumes:
-      - /mnt/Stripe1TB/media/yt_vids:/media
-      - /mnt/Stripe1TB/metube_vids-config:/config
-    ports:
-      - 8086:8080
+      - 8501:8080
     restart: unless-stopped
