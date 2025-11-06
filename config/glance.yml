@@ -60,7 +60,7 @@ pages:
                 url: "http://10.0.1.51"
                 timeout: 1s
 
-          # Database Monitoring (bottom left, compact, no Neo4j)
+          # Database Monitoring
           - type: monitor
             size: small
             title: "Database Monitoring"
@@ -72,42 +72,37 @@ pages:
               - title: "Minio Console"
                 url: "http://10.0.220.145:9001"
                 timeout: 1s
+              - title: "Admin-Mongo"
+                url: "http://10.0.2.247:1234/"
+                timeout: 1s
+              - title: "pgAdmin4"
+                url: "http://10.0.2.247:5050"
+                timeout: 1s
+              - title: "MINIO-S3-Console"
+                url: "http://10.0.0.251:9002/"
+                timeout: 1s
+              - title: "Neo4j"
+                url: "http://10.0.0.216:7474/browser"
+                timeout: 1s
 
       - size: full
         widgets:
-          # Base Infra Bookmarks (only non-monitored services)
-          - type: bookmarks
-            title: "Base Infra"
-            groups:
-              - links:
-                  - title: "Portainer Master"
-                    url: "http://10.0.9.28:9000"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
-                  - title: "Misc Host Filebrowser"
-                    url: "http://10.0.2.247:8080/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"
-
-          # Databases Bookmarks (only non-monitored services)
-          - type: bookmarks
-            title: "Databases"
-            groups:
-              - links:
-                  - title: "Admin-Mongo"
-                    url: "http://10.0.2.247:1234/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/mongodb.png"
-                  - title: "pgAdmin4"
-                    url: "http://10.0.2.247:5050"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/pgadmin.png"
-                  - title: "MINIO-S3-Console"
-                    url: "http://10.0.0.251:9002/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/minio.png"
-                  - title: "Neo4j"
-                    url: "http://10.0.0.216:7474/browser"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/neo4j.png"
+          # Base Infra Additional Monitoring
+          - type: monitor
+            size: small
+            title: "Base Infra Additional"
+            cache: 3s
+            sites:
+              - title: "Portainer Master"
+                url: "http://10.0.9.28:9000"
+                timeout: 1s
+              - title: "Misc Host Filebrowser"
+                url: "http://10.0.2.247:8080/"
+                timeout: 1s
 
       - size: small
         widgets:
-          # NAS Monitoring (right top, compact)
+          # NAS Monitoring
           - type: monitor
             size: small
             title: "NAS Monitoring"
@@ -122,30 +117,26 @@ pages:
               - title: "NAS Filebrowser"
                 url: "http://10.0.220.145:8080"
                 timeout: 1s
+              - title: "Portainer NAS"
+                url: "https://10.0.220.145:31015"
+                timeout: 1s
+                allow-insecure: true
 
-          # NAS Bookmarks (only non-monitored services)
-          - type: bookmarks
-            title: "NAS"
-            groups:
-              - links:
-                  - title: "Portainer NAS"
-                    url: "https://10.0.220.145:31015"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/portainer.png"
-
-          # External Bookmarks
-          - type: bookmarks
-            title: "External"
-            groups:
-              - links:
-                  - title: "Cloudflare Dashboard"
-                    url: "https://dash.cloudflare.com"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/cloudflare.png"
-                  - title: "Google Domains"
-                    url: "https://domains.google"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/google.png"
-                  - title: "Homelab Github"
-                    url: "https://github.com/BasicOverflow/compose"
-                    icon: "si:github"
+          # External Services Monitoring
+          - type: monitor
+            size: small
+            title: "External Services"
+            cache: 3s
+            sites:
+              - title: "Cloudflare Dashboard"
+                url: "https://dash.cloudflare.com"
+                timeout: 1s
+              - title: "Google Domains"
+                url: "https://domains.google"
+                timeout: 1s
+              - title: "Homelab Github"
+                url: "https://github.com/BasicOverflow/compose"
+                timeout: 1s
 
   - name: Media&Misc.
     columns:
@@ -182,34 +173,36 @@ pages:
                 url: "http://10.0.75.113:8501/"
                 timeout: 1s
 
-          # Miscellaneous Bookmarks (including Fileshelter)
-          - type: bookmarks
-            title: "Miscellaneous"
-            groups:
-              - links:
-                  - title: "Immich"
-                    url: "http://10.0.220.145:2283"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/immich-kiosk.svg"
-                  - title: "Vault-Warden"
-                    url: "https://vault.basicoverflow.com"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/bitwarden.png"
-                  - title: "GhostBoard"
-                    url: "http://10.0.2.247:8081/"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/notes.png"
+          # Miscellaneous Services Monitoring
+          - type: monitor
+            size: small
+            title: "Miscellaneous Services"
+            cache: 3s
+            sites:
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "GhostBoard"
+                url: "http://10.0.2.247:8081/"
+                timeout: 1s
 
       - size: full
         widgets:
-          # Media Services Bookmarks (only non-monitored services)
-          - type: bookmarks
-            title: "Media Services"
-            groups:
-              - links:
-                  - title: "Jellyfin"
-                    url: "http://10.0.75.113:8096"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyfin.png"
-                  - title: "Jellyseerr"
-                    url: "http://10.0.75.113:5055"
-                    icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/jellyseerr.png"
+          # Media Services Additional Monitoring
+          - type: monitor
+            size: small
+            title: "Media Services Additional"
+            cache: 3s
+            sites:
+              - title: "Jellyfin"
+                url: "http://10.0.75.113:8096"
+                timeout: 1s
+              - title: "Jellyseerr"
+                url: "http://10.0.75.113:5055"
+                timeout: 1s
 
       - size: small
         widgets:
