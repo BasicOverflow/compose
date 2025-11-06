@@ -14,5 +14,5 @@ services:
     volumes:
       - /mnt/Stripe1TB/media/youtube_videos:/downloads/youtube_videos
     ports:
-      - 8080:8501
+      - 8501:8080
     restart: unless-stopped
