@@ -41,16 +41,13 @@ pages:
                 url: "http://10.0.220.145:27017"
                 timeout: 1s
               - title: "Minio Console"
-                url: "http://10.0.220.145:9001"
+                url: "http://10.0.220.145:9001/"
                 timeout: 1s
               - title: "Admin-Mongo"
                 url: "http://10.0.2.247:1234/"
                 timeout: 1s
               - title: "pgAdmin4"
                 url: "http://10.0.2.247:5050"
-                timeout: 1s
-              - title: "MINIO-S3-Console"
-                url: "http://10.0.0.251:9002/"
                 timeout: 1s
               - title: "Neo4j"
                 url: "http://10.0.0.216:7474/browser"
