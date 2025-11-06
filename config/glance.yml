@@ -60,6 +60,8 @@ pages:
                 url: "http://10.0.1.51"
                 timeout: 1s
 
+      - size: full
+        widgets:
           # Database Monitoring
           - type: monitor
             size: small
@@ -85,8 +87,6 @@ pages:
                 url: "http://10.0.0.216:7474/browser"
                 timeout: 1s
 
-      - size: full
-        widgets:
           # Base Infra Additional Monitoring
           - type: monitor
             size: small
@@ -173,6 +173,8 @@ pages:
                 url: "http://10.0.75.113:8501/"
                 timeout: 1s
 
+      - size: full
+        widgets:
           # Miscellaneous Services Monitoring
           - type: monitor
             size: small
@@ -187,21 +189,6 @@ pages:
                 timeout: 1s
               - title: "GhostBoard"
                 url: "http://10.0.2.247:8081/"
-                timeout: 1s
-
-      - size: full
-        widgets:
-          # Media Services Additional Monitoring
-          - type: monitor
-            size: small
-            title: "Media Services Additional"
-            cache: 3s
-            sites:
-              - title: "Jellyfin"
-                url: "http://10.0.75.113:8096"
-                timeout: 1s
-              - title: "Jellyseerr"
-                url: "http://10.0.75.113:5055"
                 timeout: 1s
 
       - size: small
