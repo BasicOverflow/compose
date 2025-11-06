@@ -55,10 +55,10 @@ pages:
 
       - size: full
         widgets:
-          # Base Infra (combined)
+          # Proxmox & Kubernetes
           - type: monitor
             size: small
-            title: "Base Infra"
+            title: "Proxmox & Kubernetes"
             cache: 3s
             sites:
               - title: "Proxmox Aitherios"
@@ -73,15 +73,22 @@ pages:
                 url: "https://10.0.0.154:8006"
                 timeout: 1s
                 allow-insecure: true
-              - title: "Nginx Proxy Manager"
-                url: "http://10.0.0.136:81"
-                timeout: 1s
               - title: "Rancher"
                 url: "https://10.0.1.50:443"
                 timeout: 1s
                 allow-insecure: true
               - title: "Longhorn"
                 url: "http://10.0.1.51"
+                timeout: 1s
+
+          # Infrastructure
+          - type: monitor
+            size: small
+            title: "Infrastructure"
+            cache: 3s
+            sites:
+              - title: "Nginx Proxy Manager"
+                url: "http://10.0.0.136:81"
                 timeout: 1s
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"

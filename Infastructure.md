@@ -5,6 +5,10 @@
 - **Immich**: Port `2283` - Photo/video management platform
 - **Filebrowser**: Port `8080` - Web-based file manager
 - **Portainer NAS**: Port `31015` - Standalone Portainer instance (not connected to master)
+- **MongoDB**: Port `27017` - MongoDB database
+- **MinIO**: Port `9001` - Object storage console
+- **PostgreSQL Fast**: Port `5433` - NVME-based ZFS pool (`/mnt/zfs02-fast/postgres-fast`)
+- **PostgreSQL Slow**: Port `5432` - HDD-based ZFS pool (`/mnt/zfs01/postgres`)
 
 ## NFS Shares for Proxmox VMs
 NFS shares mounted on Jellyfin stack VM (`10.0.75.113`):
@@ -81,9 +85,11 @@ All VMs are configured for HA across the entire cluster except dedicated Kuberne
 
 ## Database Services
 - **MongoDB**: `10.0.220.145:27017` (Admin-Mongo UI: `10.0.2.247:1234`)
-- **PostgreSQL**: pgAdmin4 UI at `10.0.0.54:5050`
+- **PostgreSQL Fast**: `10.0.220.145:5433` - NVME-based ZFS pool (`/mnt/zfs02-fast/postgres-fast`)
+- **PostgreSQL Slow**: `10.0.220.145:5432` - HDD-based ZFS pool (`/mnt/zfs01/postgres`)
+- **PostgreSQL UI**: pgAdmin4 at `10.0.2.247:5050`
 - **Neo4j**: `10.0.0.216:7474/browser`
-- **MinIO S3**: Console at `10.0.0.251:9002`
+- **MinIO**: Console at `10.0.220.145:9001`
 
 ## Additional Services
 - **Nginx Proxy Manager**: `10.0.0.136:81` - Main reverse proxy
