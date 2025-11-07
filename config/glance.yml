@@ -49,8 +49,11 @@ pages:
               - title: "pgAdmin4"
                 url: "http://10.0.2.247:5050"
                 timeout: 1s
-              - title: "Neo4j"
-                url: "http://10.0.0.216:7474/browser"
+              - title: "Neo4j Slow Test"
+                url: "http://10.0.220.145:7474/browser/"
+                timeout: 1s
+              - title: "Neo4j Fast Test"
+                url: "http://10.0.220.145:7475/browser/"
                 timeout: 1s
 
       - size: full
