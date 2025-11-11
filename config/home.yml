@@ -87,4 +87,12 @@
           icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/resiliosync.png"
         - title: "Immich"
           url: "http://10.0.220.145:2283"
-          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/immich-kiosk.svg" 
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons/svg/immich-kiosk.svg"
+
+- type: bookmarks
+  title: "Miscellaneous"
+  groups:
+    - links:
+        - title: "MC Host Filebrowser"
+          url: "http://10.0.0.155:8080/"
+          icon: "https://cdn.jsdelivr.net/gh/walkxcode/dashboard-icons@master/png/filebrowser.png"

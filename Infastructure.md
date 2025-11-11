@@ -9,6 +9,17 @@
 - **MinIO**: Port `9001` - Object storage console
 - **PostgreSQL Fast**: Port `5433` - NVME-based ZFS pool (`/mnt/zfs02-fast/postgres-fast`)
 - **PostgreSQL Slow**: Port `5432` - HDD-based ZFS pool (`/mnt/zfs01/postgres`)
+- **Neo4j Slow Test**: Port `7474` - HDD-based ZFS pool (`/mnt/zfs01/neo4j-slow`)
+- **Neo4j Fast Test**: Port `7475` - NVME-based ZFS pool (`/mnt/zfs02-fast/neo4j-fast`)
+
+### ZFS Dataset Structure
+Datasets have been created on each pool (fast/slow) for database services. Child datasets can be created within these parent datasets for specific projects:
+- **Fast Pool** (`zfs02-fast`): NVME-based storage for high-performance databases
+  - `postgres-fast` - PostgreSQL fast instance
+  - `neo4j-fast` - Neo4j fast test instance
+- **Slow Pool** (`zfs01`): HDD-based storage for standard databases
+  - `postgres` - PostgreSQL slow instance
+  - `neo4j-slow` - Neo4j slow test instance
 
 ## NFS Shares for Proxmox VMs
 NFS shares mounted on Jellyfin stack VM (`10.0.75.113`):
@@ -88,7 +99,8 @@ All VMs are configured for HA across the entire cluster except dedicated Kuberne
 - **PostgreSQL Fast**: `10.0.220.145:5433` - NVME-based ZFS pool (`/mnt/zfs02-fast/postgres-fast`)
 - **PostgreSQL Slow**: `10.0.220.145:5432` - HDD-based ZFS pool (`/mnt/zfs01/postgres`)
 - **PostgreSQL UI**: pgAdmin4 at `10.0.2.247:5050`
-- **Neo4j**: `10.0.0.216:7474/browser`
+- **Neo4j Slow Test**: `10.0.220.145:7474/browser` - HDD-based ZFS pool (`/mnt/zfs01/neo4j-slow`)
+- **Neo4j Fast Test**: `10.0.220.145:7475/browser` - NVME-based ZFS pool (`/mnt/zfs02-fast/neo4j-fast`)
 - **MinIO**: Console at `10.0.220.145:9001`
 
 ## Additional Services
