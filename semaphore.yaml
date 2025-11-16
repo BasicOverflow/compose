@@ -1,0 +1,26 @@
+services:
+  semaphore:
+    image: docker.io/semaphoreui/semaphore:latest
+    container_name: semaphore
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      # Database (BoltDB)
+      SEMAPHORE_DB_DIALECT: bolt
+
+      # Admin user (initial login)
+      SEMAPHORE_ADMIN: admin
+      SEMAPHORE_ADMIN_PASSWORD: iamroot6025
+      SEMAPHORE_ADMIN_NAME: admin
+      SEMAPHORE_ADMIN_EMAIL: admin@example.com
+
+    volumes:
+      # Semaphore config + BoltDB data
+      - /home/peter/semaphore/config:/etc/semaphore:rw
+
+      # Optional: playbook inventory
+      - /home/peter/semaphore/inventory:/inventory:ro
+
+      # Optional: SSH authorized keys for Semaphore jobs
+      - /home/peter/semaphore/authorized_keys:/authorized-keys:ro
