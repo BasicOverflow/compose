@@ -1,0 +1,36 @@
+---
+- name: Install MinIO Client (mc) on any Linux machine
+  hosts: all
+  become: true
+  gather_facts: true
+
+  vars:
+    mc_install_path: "/usr/local/bin/mc"
+
+  tasks:
+    - name: Check if mc is already installed
+      stat:
+        path: "{{ mc_install_path }}"
+      register: mc_stat
+
+    - name: Download MinIO Client binary
+      get_url:
+        url: "https://dl.min.io/client/mc/release/linux-amd64/mc"
+        dest: "/tmp/mc"
+        mode: '0755'
+      when: not mc_stat.stat.exists
+
+    - name: Move mc binary to installation path
+      command: mv /tmp/mc {{ mc_install_path }}
+      args:
+        creates: "{{ mc_install_path }}"
+      when: not mc_stat.stat.exists
+
+    - name: Verify mc installation
+      command: mc --version
+      register: mc_version_output
+      changed_when: false
+
+    - name: Print mc version
+      debug:
+        msg: "{{ mc_version_output.stdout }}"
