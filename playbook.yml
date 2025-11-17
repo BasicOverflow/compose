@@ -2,11 +2,15 @@
 - name: Install MinIO Client (mc) on any Linux machine
   hosts: all
   gather_facts: true
-  become: true        # escalate to root
-  become_method: sudo # use sudo
+  become: true
+  become_method: sudo
 
   vars:
     mc_install_path: "/usr/local/bin/mc"
+    minio_alias_name: "truenas"
+    minio_host: "http://10.0.220.145:9000"
+    minio_access_key: "{{ MINIO_ACCESS_KEY }}"
+    minio_secret_key: "{{ MINIO_SECRET_KEY }}"
 
   tasks:
     - name: Check if mc is installed
@@ -35,3 +39,16 @@
     - name: Show mc version
       debug:
         msg: "{{ mc_version_output.stdout }}"
+
+    - name: Configure MinIO alias
+      command: >
+        mc alias set {{ minio_alias_name }}
+        {{ minio_host }}
+        {{ minio_access_key }}
+        {{ minio_secret_key }}
+      register: mc_alias_output
+      changed_when: "'Added' in mc_alias_output.stdout or 'Updated' in mc_alias_output.stdout"
+
+    - name: Show alias creation output
+      debug:
+        msg: "{{ mc_alias_output.stdout }}"
