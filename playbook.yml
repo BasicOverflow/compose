@@ -8,10 +8,10 @@
   vars:
     mc_install_path: "/usr/local/bin/mc"
     # Load MinIO info from environment variables (Semaphore Environment)
-    minio_alias_name: "{{ lookup('env','MINIO_ALIAS_NAME') | default('truenas') }}"
-    minio_host: "{{ lookup('env','MINIO_HOST') }}"
-    minio_access_key: "{{ lookup('env','MINIO_ACCESS_KEY') }}"
-    minio_secret_key: "{{ lookup('env','MINIO_SECRET_KEY') }}"
+    # minio_alias_name: "{{ lookup('env','MINIO_ALIAS_NAME') | default('truenas') }}"
+    # minio_host: "{{ lookup('env','MINIO_HOST') }}"
+    # minio_access_key: "{{ lookup('env','MINIO_ACCESS_KEY') }}"
+    # minio_secret_key: "{{ lookup('env','MINIO_SECRET_KEY') }}"
 
   tasks:
     - name: Check if mc is already installed
