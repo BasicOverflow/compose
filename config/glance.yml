@@ -106,6 +106,9 @@ pages:
               - title: "Misc Host Filebrowser"
                 url: "http://10.0.2.247:8080/"
                 timeout: 1s
+              - title: "Semaphore"
+                url: "http://10.0.153.222:3000/"
+                timeout: 1s
 
       - size: small
         widgets:

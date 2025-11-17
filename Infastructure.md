@@ -84,6 +84,7 @@ All VMs are configured for HA across the entire cluster except dedicated Kuberne
 - **nginx-proxy-manager-host** (`10.0.0.136`): Main reverse proxy (`81`)
 - **wireguard-host** (`10.0.173.26`): Wireguard VPN server
 - **admin-panel** (`10.0.153.222`): SSH gateway for K3s VMs, Ansible management
+  - Services: Semaphore (`3000`)
 
 ## Portainer Architecture
 - **Master**: `10.0.9.28:9000` - Central Portainer instance
@@ -132,6 +133,48 @@ All services mount NFS shares from TrueNAS:
 - qBittorrent uses ExpressVPN's network for secure torrenting
 - Other services run on host network for local access
 - All media stored on TrueNAS NFS shares
+
+## Minecraft Host (`10.0.0.155`)
+Ubuntu 22.04 docker vm template
+
+### Port-Forwarded Ports
+- `25565-25570`
+
+### Servers
+- **server1**: Creative mess-around server for everyone
+- **server2**: Me, vivi, nat survival world
+- **server3**: Everyone amplified survival world
+
+### Datapacks Installed
+- **AFK Display** - Greys out a player's name in the player list if they haven't moved for 5 minutes, indicating they're AFK
+- **Anti Enderman Grief** - Prevents endermen from picking up blocks, helping to preserve your builds
+- **Anti Ghast Grief** - Stops ghast explosions from destroying blocks, protecting your structures in the Nether
+- **Bat Membranes** - Allows bats to drop phantom membranes upon death, providing an alternative source for this item
+- **Cauldron Concrete** - Enables players to convert concrete powder into concrete by right-clicking it into a cauldron filled with water
+- **Cauldron Mud** - Lets players create mud by using a water-filled cauldron and dirt blocks
+- **Classic Fishing Loot** - Restores the old fishing loot tables, allowing players to catch valuable items while fishing
+- **Confetti Creepers** - When creepers explode, they emit a harmless confetti effect instead of causing damage
+- **Custom Nether Portals** - Allows the creation of nether portals in any shape and size, offering more flexibility in portal design
+- **Double Shulker Shells** - Ensures that shulkers drop two shells upon death, making it easier to craft shulker boxes
+- **Dragon Drops** - Modifies the Ender Dragon's drops to include an elytra and a dragon egg upon defeat
+- **Durability Ping** - Notifies players with a ping sound when their tool or armor durability is low
+- **Ender Chest Always Drops** - Ensures that ender chests drop themselves when broken, even without a Silk Touch pickaxe
+- **Fast Leaf Decay** - Speeds up the decay of leaves after tree logs are removed, reducing waiting time
+- **Glass Always Drops** - Makes glass blocks drop themselves when broken, eliminating the need for Silk Touch
+- **Graves** - Upon death, a grave is created containing all your items, which can be retrieved by right-clicking
+- **Husks Drop Sand** - Adds a chance for husks to drop sand upon death, providing an alternative sand source
+- **Mini Blocks** - Introduces miniature versions of blocks that can be used for decoration
+- **More Effective Tools** - Enhances tool effectiveness, allowing tools to break blocks faster or more efficiently
+- **More Mob Heads** - Increases the variety of mob heads that can drop when mobs are killed by players
+- **Multiplayer Sleep** - Allows one player to sleep to skip the night on multiplayer servers, rather than requiring all players to sleep
+- **Name Colors** - Enables players to change the color of their in-game names using commands
+- **Painting Picker** - Allows players to cycle through different paintings by right-clicking on them with an empty hand
+- **Silence Mobs** - Lets players silence mobs by naming them "Silence Me" with a name tag, preventing them from making noise
+- **Silk Touch Budding Amethyst** - Permits the collection of budding amethyst blocks using a Silk Touch pickaxe
+- **Unlock All Recipes** - Automatically unlocks all crafting recipes for players upon joining the game
+- **Villager Death Messages** - Displays a message in chat when a villager dies, indicating the cause of death
+- **Villager Workstation Highlights** - Highlights the workstation a villager is linked to, making it easier to identify their profession
+- **Wandering Trades** - Adds mini blocks to the Wandering Trader's trade offers, providing more decorative options
 
 immich api key: `3p3NV5vwU6li4j1y4ppYWAP4QY0yVfcLK4MTKfY8g6c`
 
