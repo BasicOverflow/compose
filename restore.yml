@@ -1,0 +1,68 @@
+---
+- name: Restore MC Container Backup from MinIO
+  hosts: mc-host
+  vars:
+    mc_servers:
+      - name: mc1
+        container: mc_server_1-mc1-1
+        path: /home/peter/mc1
+      - name: mc2
+        container: mc_server_2-mc2-1
+        path: /home/peter/mc2
+      - name: mc3
+        container: mc_server_3-mc3-1
+        path: /home/peter/mc3
+
+    minio_alias: "minio"
+    minio_bucket: "mc-backups"
+    target_container: "mc1"        # change to mc2 or mc3 to restore another
+    version_id: ""                  # leave empty for latest, or put specific version ID
+
+  tasks:
+
+    - name: Create temporary restore directory
+      file:
+        path: /tmp/mc-restore
+        state: directory
+        mode: '0755'
+
+    - name: Download backup from MinIO
+      command: >
+        mc cp
+        {% if version_id != "" %} --version-id {{ version_id }} {% endif %}
+        {{ minio_alias }}/{{ minio_bucket }}/{{ target_container }}/world.tar.gz
+        /tmp/mc-restore/world.tar.gz
+
+    - name: Stop the container before restore
+      docker_container:
+        name: "{{ item.container }}"
+        state: stopped
+      loop: "{{ mc_servers }}"
+      when: item.name == target_container
+
+    - name: Remove current data directory (optional: make a pre-restore backup first)
+      file:
+        path: "{{ item.path }}"
+        state: absent
+      loop: "{{ mc_servers }}"
+      when: item.name == target_container
+
+    - name: Extract backup into data directory
+      unarchive:
+        src: /tmp/mc-restore/world.tar.gz
+        dest: "{{ item.path }}"
+        remote_src: yes
+      loop: "{{ mc_servers }}"
+      when: item.name == target_container
+
+    - name: Start the container after restore
+      docker_container:
+        name: "{{ item.container }}"
+        state: started
+      loop: "{{ mc_servers }}"
+      when: item.name == target_container
+
+    - name: Clean up temporary restore files
+      file:
+        path: /tmp/mc-restore/world.tar.gz
+        state: absent
