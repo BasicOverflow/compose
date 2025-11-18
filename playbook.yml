@@ -1,51 +1,100 @@
 ---
-- name: Install MinIO Client (mc) and configure alias
+- name: Install mc and test MinIO connection
   hosts: all
-  gather_facts: true
   become: true
-  become_method: sudo
+  gather_facts: false
 
   vars:
     mc_install_path: "/usr/local/bin/mc"
-    # Load MinIO info from environment variables (Semaphore Environment)
 
   tasks:
-    - name: Check if mc is already installed
+
+    # -------------------------
+    # Install mc
+    # -------------------------
+    - name: Check if mc is installed
       stat:
         path: "{{ mc_install_path }}"
       register: mc_stat
 
-    - name: Download MinIO Client binary
+    - name: Download mc
       get_url:
         url: "https://dl.min.io/client/mc/release/linux-amd64/mc"
         dest: "/tmp/mc"
-        mode: '0755'
+        mode: "0755"
       when: not mc_stat.stat.exists
 
-    - name: Move mc binary to installation path
+    - name: Move mc to /usr/local/bin
       command: mv /tmp/mc {{ mc_install_path }}
       args:
         creates: "{{ mc_install_path }}"
       when: not mc_stat.stat.exists
 
-    - name: Verify mc installation
+    - name: Verify mc version
       command: mc --version
-      register: mc_version_output
+      register: mc_version
       changed_when: false
 
-    - name: Show mc version
-      debug:
-        msg: "{{ mc_version_output.stdout }}"
+    - debug:
+        msg: "Installed mc version: {{ mc_version.stdout }}"
 
+    # -------------------------
+    # Set MinIO alias using EXTRA VARS
+    # -------------------------
     - name: Configure MinIO alias
       command: >
-        mc alias set {{ minio_alias_name }}
-        {{ minio_host }}
+        mc alias set {{ minio_alias }}
+        {{ minio_url }}
         {{ minio_access_key }}
         {{ minio_secret_key }}
-      register: mc_alias_output
-      changed_when: "'Added' in mc_alias_output.stdout or 'Updated' in mc_alias_output.stdout"
+      register: alias_output
 
-    - name: Show alias creation output
-      debug:
-        msg: "{{ mc_alias_output.stdout }}"
+    - debug:
+        var: alias_output.stdout_lines
+
+    # -------------------------
+    # Backup test steps
+    # -------------------------
+
+    - name: List buckets
+      command: mc ls {{ minio_alias }}
+      register: list_output
+      changed_when: false
+
+    - debug:
+        msg: "{{ list_output.stdout_lines }}"
+
+    - name: Create test folder in bucket
+      command: mc mb {{ minio_alias }}/{{ minio_bucket }}/test-folder
+      register: make_folder
+      failed_when: make_folder.rc != 0 and "already exists" not in make_folder.stderr
+
+    - debug:
+        msg: "{{ make_folder.stdout }}"
+
+    - name: Create local test file
+      copy:
+        content: "backup-test"
+        dest: /tmp/test.txt
+
+    - name: Upload test file
+      command: mc cp /tmp/test.txt {{ minio_alias }}/{{ minio_bucket }}/test-folder/
+      register: upload_output
+
+    - debug:
+        var: upload_output.stdout_lines
+
+    - name: Download the test file back
+      command: mc cp {{ minio_alias }}/{{ minio_bucket }}/test-folder/test.txt /tmp/downloaded.txt
+      register: download_output
+
+    - debug:
+        var: download_output.stdout_lines
+
+    - name: Verify downloaded file
+      command: cat /tmp/downloaded.txt
+      register: verify_output
+      changed_when: false
+
+    - debug:
+        msg: "Downloaded file content: {{ verify_output.stdout }}"
