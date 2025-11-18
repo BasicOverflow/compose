@@ -1,0 +1,61 @@
+---
+- name: Backup all Minecraft servers and upload to MinIO
+  hosts: all
+  become: true
+  gather_facts: false
+
+  vars:
+    mc_servers:
+      - name: mc1
+        path: "{{ backup_root }}/mc1"
+      - name: mc2
+        path: "{{ backup_root }}/mc2"
+      - name: mc3
+        path: "{{ backup_root }}/mc3"
+
+  tasks:
+
+    - name: Ensure backup directory exists
+      file:
+        path: /tmp/mc-backups
+        state: directory
+        mode: '0755'
+
+    # -------------------------------
+    # LOOP THROUGH THE THREE SERVERS
+    # -------------------------------
+    - name: Stop Minecraft container
+      command: docker stop {{ item.name }}
+      loop: "{{ mc_servers }}"
+
+    - name: Create compressed archive of world folder
+      command: >
+        tar -czf /tmp/mc-backups/{{ item.name }}-{{ ansible_date_time.date }}-{{ ansible_date_time.time }}.tar.gz
+        -C {{ item.path }} .
+      loop: "{{ mc_servers }}"
+      register: archive_outputs
+
+    - debug:
+        msg: "{{ archive_outputs.results | map(attribute='stdout') | list }}"
+
+    - name: Start Minecraft container again
+      command: docker start {{ item.name }}
+      loop: "{{ mc_servers }}"
+
+    # ---------------------------------------
+    # UPLOAD ALL ARCHIVES TO MINIO
+    # ---------------------------------------
+    - name: Upload archives to MinIO bucket
+      command: >
+        mc cp /tmp/mc-backups/{{ item.name }}-{{ ansible_date_time.date }}-{{ ansible_date_time.time }}.tar.gz
+        {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/
+      loop: "{{ mc_servers }}"
+      register: upload_result
+
+    - debug:
+        var: upload_result.stdout_lines
+
+    - name: Cleanup old tar archives
+      file:
+        path: /tmp/mc-backups
+        state: absent
