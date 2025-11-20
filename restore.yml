@@ -19,26 +19,31 @@
 
   tasks:
 
-    - name: Ensure server_name was passed
+    - name: Ensure server_name is provided
       ansible.builtin.fail:
-        msg: "You must pass server_name=mc1|mc2|mc3"
+        msg: "You must pass server_name=mc1|mc2|mc3 as an extra var"
       when: server_name is not defined or server_name not in mc_servers
+
+    - name: Check if mc alias exists
+      ansible.builtin.command: mc alias ls
+      register: alias_list
+      changed_when: false
 
     - name: Set MinIO alias if missing
       ansible.builtin.command: >
         mc alias set {{ minio_alias }}
         http://10.0.220.145:9000
-        {{ lookup('env','MINIO_ACCESS_KEY') }}
-        {{ lookup('env','MINIO_SECRET_KEY') }}
-      register: alias_result
-      failed_when: false
-      changed_when: "'Added' in alias_result.stdout"
+        {{ minio_access_key }}
+        {{ minio_secret_key }}
+      when: "'{{ minio_alias }}' not in alias_list.stdout"
+      environment:
+        MC_CONFIG_DIR: "/home/peter/.mc"
 
     - name: Stop the container
       ansible.builtin.command: docker stop {{ mc_servers[server_name].container }}
       ignore_errors: yes
 
-    - name: Remove old server directory
+    - name: Remove current server directory
       ansible.builtin.file:
         path: "{{ restore_base_path }}/{{ server_name }}"
         state: absent
@@ -49,12 +54,14 @@
         state: directory
         owner: peter
         group: peter
-        mode: '0755'
+        mode: "0755"
 
     - name: Download backup from MinIO
       ansible.builtin.command: >
         mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}.tar.gz
         {{ restore_base_path }}/{{ server_name }}/backup.tar.gz
+      environment:
+        MC_CONFIG_DIR: "/home/peter/.mc"
 
     - name: Extract backup archive
       ansible.builtin.unarchive:
