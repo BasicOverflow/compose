@@ -1,5 +1,5 @@
 ---
-- name: Install mc and test MinIO connection
+- name: Install mc, rclone, and test MinIO connection
   hosts: all
   become: true
   gather_facts: false
@@ -39,6 +39,27 @@
         msg: "Installed mc version: {{ mc_version.stdout }}"
 
     # -------------------------
+    # Install rclone
+    # -------------------------
+    - name: Check if rclone is installed
+      stat:
+        path: "/usr/bin/rclone"
+      register: rclone_stat
+
+    - name: Install rclone
+      shell: |
+        curl https://rclone.org/install.sh | bash
+      when: not rclone_stat.stat.exists
+
+    - name: Verify rclone version
+      command: rclone --version
+      register: rclone_version
+      changed_when: false
+
+    - debug:
+        msg: "Installed rclone version: {{ rclone_version.stdout_lines[0] }}"
+
+    # -------------------------
     # Set MinIO alias using EXTRA VARS
     # -------------------------
     - name: Configure MinIO alias
@@ -55,7 +76,6 @@
     # -------------------------
     # Backup test steps
     # -------------------------
-
     - name: List buckets
       command: mc ls {{ minio_alias }}
       register: list_output
