@@ -1,10 +1,9 @@
 ---
-- name: Restore a single MC server from MinIO backup
+- name: Restore a single Minecraft world from MinIO
   hosts: mc-host
   become: yes
 
   vars:
-    # Mapping of server name → container name
     mc_servers:
       mc1:
         container: "mc_server_1-mc1-1"
@@ -15,64 +14,44 @@
 
   tasks:
 
-    - name: Ensure server_name is provided correctly
+    - name: Ensure server_name is valid
       ansible.builtin.fail:
-        msg: "You must pass server_name=mc1|mc2|mc3"
+        msg: "Must pass server_name=mc1|mc2|mc3"
       when: server_name is not defined or server_name not in mc_servers
 
-    - name: Set MinIO alias
-      ansible.builtin.command: >
-        mc alias set {{ minio_alias }}
-        {{ minio_url }}
-        {{ minio_access_key }}
-        {{ minio_secret_key }}
-      register: alias_result
-      changed_when: "'Added' in alias_result.stdout or 'Updated' in alias_result.stdout"
-      environment:
-        MC_CONFIG_DIR: "/home/peter/.mc"
-
-    - name: Stop MC container
+    - name: Stop container
       ansible.builtin.command: docker stop {{ mc_servers[server_name].container }}
       ignore_errors: yes
 
-    - name: Remove current world directory
+    - name: Remove current world folder
       ansible.builtin.file:
         path: "{{ backup_root }}/{{ server_name }}/world"
         state: absent
 
-    - name: Ensure server directory exists
+    - name: Recreate empty world folder
       ansible.builtin.file:
-        path: "{{ backup_root }}/{{ server_name }}"
+        path: "{{ backup_root }}/{{ server_name }}/world"
         state: directory
         owner: peter
         group: peter
         mode: "0755"
 
-    - name: Check if world.tar.gz exists in MinIO
+    - name: Check if backup exists
       ansible.builtin.command: >
         mc ls {{ minio_alias }}/{{ minio_bucket }}/{{ server_name }}/world.tar.gz
-      register: backup_check
-      failed_when: backup_check.rc != 0
-      environment:
-        MC_CONFIG_DIR: "/home/peter/.mc"
+      register: world_exists
+      failed_when: world_exists.rc != 0
 
-    - name: Download backup from MinIO
+    - name: Download world backup
       ansible.builtin.command: >
         mc cp {{ minio_alias }}/{{ minio_bucket }}/{{ server_name }}/world.tar.gz
-        /tmp/world.tar.gz
-      environment:
-        MC_CONFIG_DIR: "/home/peter/.mc"
+        {{ backup_root }}/{{ server_name }}/world.tar.gz
 
-    - name: Extract world backup
+    - name: Extract world
       ansible.builtin.unarchive:
-        src: "/tmp/world.tar.gz"
+        src: "{{ backup_root }}/{{ server_name }}/world.tar.gz"
         dest: "{{ backup_root }}/{{ server_name }}"
         remote_src: yes
 
-    - name: Start MC container
+    - name: Start container
       ansible.builtin.command: docker start {{ mc_servers[server_name].container }}
-
-    - name: Cleanup temporary file
-      ansible.builtin.file:
-        path: "/tmp/world.tar.gz"
-        state: absent
