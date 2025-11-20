@@ -2,19 +2,22 @@
 - name: Restore MC servers from MinIO backups
   hosts: mc-host
   become: yes
-
   vars:
     minio_alias: "minio"
     bucket_name: "mc-backups"
     restore_base_path: "/home/peter"
     mc_servers:
-      - { name: "mc1", container: "mc_server_1-mc1-1" }
-      - { name: "mc2", container: "mc_server_2-mc2-1" }
-      - { name: "mc3", container: "mc_server_3-mc3-1" }
+      - name: "mc1"
+        container: "mc_server_1-mc1-1"
+      - name: "mc2"
+        container: "mc_server_2-mc2-1"
+      - name: "mc3"
+        container: "mc_server_3-mc3-1"
 
   tasks:
 
     - name: Ensure mc alias exists
+    - name: Ensure mc alias for MinIO exists
       ansible.builtin.command: >
         mc alias set {{ minio_alias }}
         http://10.0.220.145:9000
@@ -24,9 +27,8 @@
       failed_when: false
       changed_when: "'Added' in alias_set.stdout"
 
-    - name: Restore each MC server
+    - name: Loop through MC servers and restore each
       block:
-
         - name: Stop container
           ansible.builtin.command: docker stop {{ item.container }}
           ignore_errors: yes
