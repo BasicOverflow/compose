@@ -5,7 +5,7 @@
   vars:
     minio_alias: "mc1"
     bucket_name: "minecraft-backups"
-    server_name: ""   # Pass via extra vars, e.g.:  server_name=survival
+    server_name: ""   # Pass via extra vars (server_name=myworld)
 
   tasks:
 
@@ -24,7 +24,7 @@
       ansible.builtin.command: >
         mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/world.tar.gz /tmp/world.tar.gz
       register: download_result
-      changed_when: "'...'" not in download_result.stdout
+      changed_when: false
 
     - name: Stop Minecraft service
       ansible.builtin.systemd:
