@@ -1,5 +1,5 @@
 ---
-- name: Restore MC servers from MinIO backups
+- name: Restore a single MC server from MinIO backup
   hosts: mc-host
   become: yes
 
@@ -7,65 +7,60 @@
     minio_alias: "minio"
     bucket_name: "mc-backups"
     restore_base_path: "/home/peter"
+
+    # mapping of server folders to container names
     mc_servers:
-      - name: "mc1"
+      mc1:
         container: "mc_server_1-mc1-1"
-      - name: "mc2"
+      mc2:
         container: "mc_server_2-mc2-1"
-      - name: "mc3"
+      mc3:
         container: "mc_server_3-mc3-1"
 
   tasks:
 
-    - name: Ensure mc alias for MinIO exists
+    - name: Ensure server_name was passed
+      ansible.builtin.fail:
+        msg: "You must pass server_name=mc1|mc2|mc3"
+      when: server_name is not defined or server_name not in mc_servers
+
+    - name: Set MinIO alias if missing
       ansible.builtin.command: >
         mc alias set {{ minio_alias }}
         http://10.0.220.145:9000
-        {{ lookup('env', 'MINIO_ACCESS_KEY') }}
-        {{ lookup('env', 'MINIO_SECRET_KEY') }}
-      register: alias_set
+        {{ lookup('env','MINIO_ACCESS_KEY') }}
+        {{ lookup('env','MINIO_SECRET_KEY') }}
+      register: alias_result
       failed_when: false
-      changed_when: "'Added' in alias_set.stdout"
+      changed_when: "'Added' in alias_result.stdout"
 
-    - name: Restore each MC server
-      loop: "{{ mc_servers }}"
-      block:
+    - name: Stop the container
+      ansible.builtin.command: docker stop {{ mc_servers[server_name].container }}
+      ignore_errors: yes
 
-        - name: Stop container
-          ansible.builtin.command: docker stop {{ item.container }}
-          ignore_errors: yes
+    - name: Remove old server directory
+      ansible.builtin.file:
+        path: "{{ restore_base_path }}/{{ server_name }}"
+        state: absent
 
-        - name: Ensure restore temp directory exists
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: directory
-            owner: peter
-            group: peter
-            mode: "0755"
+    - name: Recreate server directory
+      ansible.builtin.file:
+        path: "{{ restore_base_path }}/{{ server_name }}"
+        state: directory
+        owner: peter
+        group: peter
+        mode: '0755'
 
-        - name: Download latest backup from MinIO
-          ansible.builtin.command: >
-            mc cp {{ minio_alias }}/{{ bucket_name }}/{{ item.name }}.tar.gz
-            {{ restore_base_path }}/{{ item.name }}/backup.tar.gz
+    - name: Download backup from MinIO
+      ansible.builtin.command: >
+        mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}.tar.gz
+        {{ restore_base_path }}/{{ server_name }}/backup.tar.gz
 
-        - name: Remove current data directory
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: absent
+    - name: Extract backup archive
+      ansible.builtin.unarchive:
+        src: "{{ restore_base_path }}/{{ server_name }}/backup.tar.gz"
+        dest: "{{ restore_base_path }}/{{ server_name }}"
+        remote_src: yes
 
-        - name: Re-create empty directory
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: directory
-            owner: peter
-            group: peter
-            mode: "0755"
-
-        - name: Extract backup into directory
-          ansible.builtin.unarchive:
-            src: "{{ restore_base_path }}/{{ item.name }}/backup.tar.gz"
-            dest: "{{ restore_base_path }}/{{ item.name }}"
-            remote_src: yes
-
-        - name: Start container
-          ansible.builtin.command: docker start {{ item.container }}
+    - name: Start the container
+      ansible.builtin.command: docker start {{ mc_servers[server_name].container }}
