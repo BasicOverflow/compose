@@ -57,23 +57,22 @@
         mode: "0755"
 
     - name: Check if backup exists in MinIO
-      ansible.builtin.command: mc ls {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/backup.tar.gz
+      ansible.builtin.command: mc ls {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/world.tar.gz
       register: backup_check
       failed_when: backup_check.rc != 0
 
     - name: Download backup from MinIO
       ansible.builtin.command: >
-        mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/backup.tar.gz
-        {{ restore_base_path }}/{{ server_name }}/backup.tar.gz
+        mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/world.tar.gz
+        {{ restore_base_path }}/{{ server_name }}/world.tar.gz
       environment:
         MC_CONFIG_DIR: "/home/peter/.mc"
 
     - name: Extract backup archive
       ansible.builtin.unarchive:
-        src: "{{ restore_base_path }}/{{ server_name }}/backup.tar.gz"
+        src: "{{ restore_base_path }}/{{ server_name }}/world.tar.gz"
         dest: "{{ restore_base_path }}/{{ server_name }}"
         remote_src: yes
 
     - name: Start the container
       ansible.builtin.command: docker start {{ mc_servers[server_name].container }}
- 
