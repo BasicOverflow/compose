@@ -76,3 +76,4 @@
 
     - name: Start the container
       ansible.builtin.command: docker start {{ mc_servers[server_name].container }}
+ 
