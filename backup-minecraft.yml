@@ -27,35 +27,50 @@
         state: directory
         mode: '0755'
 
-    - name: Backup each MC container (hot backup)
-      block:
-        - name: Pause MC saves
-          command: docker exec {{ item.container }} rcon-cli save-off
-          ignore_errors: yes
-
-        - name: Force save all
-          command: docker exec {{ item.container }} rcon-cli save-all flush
-          ignore_errors: yes
-
-        - name: Archive world folder
-          archive:
-            path: "{{ item.path }}"
-            dest: "{{ backup_temp }}/{{ item.name }}.tar.gz"
-            format: gz
-
-        - name: Resume MC saves
-          command: docker exec {{ item.container }} rcon-cli save-on
-          ignore_errors: yes
-
-        - name: Upload backup to MinIO (versioned)
-          command: >
-            mc cp {{ backup_temp }}/{{ item.name }}.tar.gz
-            {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/world.tar.gz
-          environment:
-            MC_CONFIG_DIR: "/home/peter/.mc"
-
-        - name: Clean up temporary backup file
-          file:
-            path: "{{ backup_temp }}/{{ item.name }}.tar.gz"
-            state: absent
+    - name: Pause MC saves
+      command: docker exec {{ item.container }} rcon-cli save-off
+      ignore_errors: yes
       loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
+
+    - name: Force save all
+      command: docker exec {{ item.container }} rcon-cli save-all flush
+      ignore_errors: yes
+      loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
+
+    - name: Archive world folder
+      archive:
+        path: "{{ item.path }}"
+        dest: "{{ backup_temp }}/{{ item.name }}.tar.gz"
+        format: gz
+      loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
+
+    - name: Resume MC saves
+      command: docker exec {{ item.container }} rcon-cli save-on
+      ignore_errors: yes
+      loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
+
+    - name: Upload backup to MinIO (versioned)
+      command: >
+        mc cp {{ backup_temp }}/{{ item.name }}.tar.gz
+        {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/world.tar.gz
+      environment:
+        MC_CONFIG_DIR: "/home/peter/.mc"
+      loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
+
+    - name: Clean up temporary backup files
+      file:
+        path: "{{ backup_temp }}/{{ item.name }}.tar.gz"
+        state: absent
+      loop: "{{ mc_servers }}"
+      loop_control:
+        loop_var: item
