@@ -1,73 +1,44 @@
 ---
-- name: Restore MC servers from MinIO backups
+- name: Backup MC Containers to MinIO
   hosts: mc-host
-  become: yes
   vars:
-    minio_alias: "minio"
-    bucket_name: "mc-backups"
-    restore_base_path: "/home/peter"
     mc_servers:
-      - name: "mc1"
-        container: "mc_server_1-mc1-1"
-      - name: "mc2"
-        container: "mc_server_2-mc2-1"
-      - name: "mc3"
-        container: "mc_server_3-mc3-1"
+      - name: mc1
+        container: mc_server_1-mc1-1
+        path: /home/peter/mc1
+      - name: mc2
+        container: mc_server_2-mc2-1
+        path: /home/peter/mc2
+      - name: mc3
+        container: mc_server_3-mc3-1
+        path: /home/peter/mc3
+
+    minio_alias: "minio"
+    minio_bucket: "mc-backups"
 
   tasks:
 
-    - name: Ensure mc alias exists
-    - name: Ensure mc alias for MinIO exists
-      ansible.builtin.command: >
-        mc alias set {{ minio_alias }}
-        http://10.0.220.145:9000
-        {{ lookup('env', 'MINIO_ACCESS_KEY') }}
-        {{ lookup('env', 'MINIO_SECRET_KEY') }}
-      register: alias_set
-      failed_when: false
-      changed_when: "'Added' in alias_set.stdout"
+    - name: Create temporary backup directory
+      file:
+        path: /tmp/mc-backups
+        state: directory
+        mode: '0755'
 
-    - name: Loop through MC servers and restore each
-      block:
-        - name: Stop container
-          ansible.builtin.command: docker stop {{ item.container }}
-          ignore_errors: yes
+    - name: Archive each MC container data
+      archive:
+        path: "{{ item.path }}"
+        dest: "/tmp/mc-backups/{{ item.name }}.tar.gz"
+        format: gz
+      loop: "{{ mc_servers }}"
 
-        - name: Ensure restore directory exists
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: directory
-            owner: peter
-            group: peter
-            mode: "0755"
+    - name: Upload backup to MinIO (versioned)
+      command: >
+        mc cp /tmp/mc-backups/{{ item.name }}.tar.gz
+        {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/world.tar.gz
+      loop: "{{ mc_servers }}"
 
-        - name: Download latest backup from MinIO
-          ansible.builtin.command: >
-            mc cp {{ minio_alias }}/{{ bucket_name }}/{{ item.name }}.tar.gz
-            {{ restore_base_path }}/{{ item.name }}/backup.tar.gz
-          args:
-            creates: "{{ restore_base_path }}/{{ item.name }}/backup.tar.gz"
-
-        - name: Remove current server data
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: absent
-
-        - name: Re-create server directory
-          ansible.builtin.file:
-            path: "{{ restore_base_path }}/{{ item.name }}"
-            state: directory
-            owner: peter
-            group: peter
-            mode: "0755"
-
-        - name: Extract backup
-          ansible.builtin.unarchive:
-            src: "{{ restore_base_path }}/{{ item.name }}/backup.tar.gz"
-            dest: "{{ restore_base_path }}/{{ item.name }}"
-            remote_src: yes
-
-        - name: Start container again
-          ansible.builtin.command: docker start {{ item.container }}
-
+    - name: Clean up temporary backup files
+      file:
+        path: "/tmp/mc-backups/{{ item.name }}.tar.gz"
+        state: absent
       loop: "{{ mc_servers }}"
