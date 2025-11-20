@@ -1,17 +1,15 @@
 ---
-- name: Backup MC Containers to MinIO
+- name: Backup MC worlds to MinIO
   hosts: mc-host
+
   vars:
     mc_servers:
       - name: mc1
-        container: mc_server_1-mc1-1
-        path: /home/peter/mc1
+        path: /home/peter/mc1/world
       - name: mc2
-        container: mc_server_2-mc2-1
-        path: /home/peter/mc2
+        path: /home/peter/mc2/world
       - name: mc3
-        container: mc_server_3-mc3-1
-        path: /home/peter/mc3
+        path: /home/peter/mc3/world
 
     minio_alias: "minio"
     minio_bucket: "mc-backups"
@@ -22,23 +20,22 @@
       file:
         path: /tmp/mc-backups
         state: directory
-        mode: '0755'
 
-    - name: Archive each MC container data
+    - name: Tar only the world folder
       archive:
         path: "{{ item.path }}"
-        dest: "/tmp/mc-backups/{{ item.name }}.tar.gz"
+        dest: "/tmp/mc-backups/{{ item.name }}-world.tar.gz"
         format: gz
       loop: "{{ mc_servers }}"
 
-    - name: Upload backup to MinIO (versioned)
+    - name: Upload world backup to MinIO
       command: >
-        mc cp /tmp/mc-backups/{{ item.name }}.tar.gz
+        mc cp /tmp/mc-backups/{{ item.name }}-world.tar.gz
         {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/world.tar.gz
       loop: "{{ mc_servers }}"
 
-    - name: Clean up temporary backup files
+    - name: Clean up temporary files
       file:
-        path: "/tmp/mc-backups/{{ item.name }}.tar.gz"
+        path: "/tmp/mc-backups/{{ item.name }}-world.tar.gz"
         state: absent
       loop: "{{ mc_servers }}"
