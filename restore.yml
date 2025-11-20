@@ -2,6 +2,7 @@
 - name: Restore MC servers from MinIO backups
   hosts: mc-host
   become: yes
+
   vars:
     minio_alias: "minio"
     bucket_name: "mc-backups"
@@ -16,7 +17,6 @@
 
   tasks:
 
-    - name: Ensure mc alias exists
     - name: Ensure mc alias for MinIO exists
       ansible.builtin.command: >
         mc alias set {{ minio_alias }}
@@ -27,13 +27,15 @@
       failed_when: false
       changed_when: "'Added' in alias_set.stdout"
 
-    - name: Loop through MC servers and restore each
+    - name: Restore each MC server
+      loop: "{{ mc_servers }}"
       block:
+
         - name: Stop container
           ansible.builtin.command: docker stop {{ item.container }}
           ignore_errors: yes
 
-        - name: Ensure restore directory exists
+        - name: Ensure restore temp directory exists
           ansible.builtin.file:
             path: "{{ restore_base_path }}/{{ item.name }}"
             state: directory
@@ -45,15 +47,13 @@
           ansible.builtin.command: >
             mc cp {{ minio_alias }}/{{ bucket_name }}/{{ item.name }}.tar.gz
             {{ restore_base_path }}/{{ item.name }}/backup.tar.gz
-          args:
-            creates: "{{ restore_base_path }}/{{ item.name }}/backup.tar.gz"
 
-        - name: Remove current server data
+        - name: Remove current data directory
           ansible.builtin.file:
             path: "{{ restore_base_path }}/{{ item.name }}"
             state: absent
 
-        - name: Re-create server directory
+        - name: Re-create empty directory
           ansible.builtin.file:
             path: "{{ restore_base_path }}/{{ item.name }}"
             state: directory
@@ -61,13 +61,11 @@
             group: peter
             mode: "0755"
 
-        - name: Extract backup
+        - name: Extract backup into directory
           ansible.builtin.unarchive:
             src: "{{ restore_base_path }}/{{ item.name }}/backup.tar.gz"
             dest: "{{ restore_base_path }}/{{ item.name }}"
             remote_src: yes
 
-        - name: Start container again
+        - name: Start container
           ansible.builtin.command: docker start {{ item.container }}
-
-      loop: "{{ mc_servers }}"
