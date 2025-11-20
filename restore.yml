@@ -1,6 +1,6 @@
 ---
 - name: Restore Minecraft world from MinIO
-  hosts: minecraft
+  hosts: mc_host
   become: yes
   vars:
     minio_alias: "mc1"
