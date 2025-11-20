@@ -1,15 +1,21 @@
 ---
-- name: Backup MC worlds to MinIO
+- name: Backup ONLY Minecraft world folders to MinIO
   hosts: mc-host
+  become: yes
 
   vars:
     mc_servers:
       - name: mc1
-        path: /home/peter/mc1/world
+        container: mc_server_1-mc1-1
+        world_path: /home/peter/mc1/world
+
       - name: mc2
-        path: /home/peter/mc2/world
+        container: mc_server_2-mc2-1
+        world_path: /home/peter/mc2/world
+
       - name: mc3
-        path: /home/peter/mc3/world
+        container: mc_server_3-mc3-1
+        world_path: /home/peter/mc3/world
 
     minio_alias: "minio"
     minio_bucket: "mc-backups"
@@ -17,25 +23,26 @@
   tasks:
 
     - name: Create temporary backup directory
-      file:
+      ansible.builtin.file:
         path: /tmp/mc-backups
         state: directory
+        mode: '0755'
 
-    - name: Tar only the world folder
-      archive:
-        path: "{{ item.path }}"
-        dest: "/tmp/mc-backups/{{ item.name }}-world.tar.gz"
+    - name: Archive ONLY the world folder for each server
+      ansible.builtin.archive:
+        path: "{{ item.world_path }}"
+        dest: "/tmp/mc-backups/{{ item.name }}.tar.gz"
         format: gz
       loop: "{{ mc_servers }}"
 
     - name: Upload world backup to MinIO
-      command: >
-        mc cp /tmp/mc-backups/{{ item.name }}-world.tar.gz
+      ansible.builtin.command: >
+        mc cp /tmp/mc-backups/{{ item.name }}.tar.gz
         {{ minio_alias }}/{{ minio_bucket }}/{{ item.name }}/world.tar.gz
       loop: "{{ mc_servers }}"
 
-    - name: Clean up temporary files
-      file:
-        path: "/tmp/mc-backups/{{ item.name }}-world.tar.gz"
+    - name: Remove temporary backup archive
+      ansible.builtin.file:
+        path: "/tmp/mc-backups/{{ item.name }}.tar.gz"
         state: absent
       loop: "{{ mc_servers }}"
