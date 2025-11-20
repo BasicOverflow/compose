@@ -56,9 +56,14 @@
         group: peter
         mode: "0755"
 
+    - name: Check if backup exists in MinIO
+      ansible.builtin.command: mc ls {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/backup.tar.gz
+      register: backup_check
+      failed_when: backup_check.rc != 0
+
     - name: Download backup from MinIO
       ansible.builtin.command: >
-        mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}.tar.gz
+        mc cp {{ minio_alias }}/{{ bucket_name }}/{{ server_name }}/backup.tar.gz
         {{ restore_base_path }}/{{ server_name }}/backup.tar.gz
       environment:
         MC_CONFIG_DIR: "/home/peter/.mc"
