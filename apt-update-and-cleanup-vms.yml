@@ -1,0 +1,27 @@
+---
+- name: Update and Cleanup Docker VMs
+  hosts: docker-vms
+  become: yes
+
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
+        cache_valid_time: 3600
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+        autoremove: yes
+        autoclean: yes
+
+    - name: Clean up apt cache and old packages
+      shell: |
+        apt-get clean
+        apt-get autoremove -y
+        apt-get autoclean
+      changed_when: false
+
+    - name: Clean up old apt repository lists
+      shell: find /var/lib/apt/lists -type f -delete
+      changed_when: false
