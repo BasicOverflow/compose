@@ -27,33 +27,33 @@ theme:
 
 # Pages configuration
 pages:
-  - name: Infrastructure
+  - name: Homelab
     columns:
       - size: small
         widgets:
-          # Database Monitoring
+          # External Services
           - type: monitor
             size: small
-            title: "Database"
+            title: "External Services"
             cache: 3s
             sites:
-              - title: "Mongodb"
-                url: "http://10.0.220.145:27017"
+              - title: "Nginx Proxy Manager"
+                url: "http://10.0.0.136:81"
                 timeout: 1s
-              - title: "Minio Console"
-                url: "http://10.0.220.145:9001/"
+              - title: "Portainer Master"
+                url: "http://10.0.9.28:9000"
                 timeout: 1s
-              - title: "Admin-Mongo"
-                url: "http://10.0.2.247:1234/"
+              - title: "Semaphore"
+                url: "http://10.0.153.222:3000/"
                 timeout: 1s
-              - title: "pgAdmin4"
-                url: "http://10.0.2.247:5050"
+              - title: "Cloudflare Dashboard"
+                url: "https://dash.cloudflare.com"
                 timeout: 1s
-              - title: "Neo4j Slow Test"
-                url: "http://10.0.220.145:7474/browser/"
+              - title: "Google Domains"
+                url: "https://domains.google"
                 timeout: 1s
-              - title: "Neo4j Fast Test"
-                url: "http://10.0.220.145:7475/browser/"
+              - title: "Homelab Github"
+                url: "https://github.com/BasicOverflow/compose"
                 timeout: 1s
 
       - size: full
@@ -91,28 +91,7 @@ pages:
                 url: "http://10.0.1.51"
                 timeout: 1s
 
-          # Other
-          - type: monitor
-            size: small
-            title: "Other"
-            cache: 3s
-            sites:
-              - title: "Nginx Proxy Manager"
-                url: "http://10.0.0.136:81"
-                timeout: 1s
-              - title: "Portainer Master"
-                url: "http://10.0.9.28:9000"
-                timeout: 1s
-              - title: "Misc Host Filebrowser"
-                url: "http://10.0.2.247:8080/"
-                timeout: 1s
-              - title: "Semaphore"
-                url: "http://10.0.153.222:3000/"
-                timeout: 1s
-
-      - size: small
-        widgets:
-          # NAS Monitoring
+          # NAS
           - type: monitor
             size: small
             title: "NAS"
@@ -124,56 +103,55 @@ pages:
               - title: "Syncthing"
                 url: "http://10.0.220.145:8384"
                 timeout: 1s
-              - title: "NAS Filebrowser"
-                url: "http://10.0.220.145:8080"
-                timeout: 1s
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
                 timeout: 1s
                 allow-insecure: true
 
-          # External Services Monitoring
+          # Database
           - type: monitor
             size: small
-            title: "External Services"
+            title: "Database"
             cache: 3s
             sites:
-              - title: "Cloudflare Dashboard"
-                url: "https://dash.cloudflare.com"
+              - title: "Mongodb"
+                url: "http://10.0.220.145:27017"
                 timeout: 1s
-              - title: "Google Domains"
-                url: "https://domains.google"
+              - title: "Minio Console"
+                url: "http://10.0.220.145:9001/"
                 timeout: 1s
-              - title: "Homelab Github"
-                url: "https://github.com/BasicOverflow/compose"
+              - title: "Admin-Mongo"
+                url: "http://10.0.2.247:1234/"
+                timeout: 1s
+              - title: "pgAdmin4"
+                url: "http://10.0.2.247:5050"
+                timeout: 1s
+              - title: "Neo4j Slow Test"
+                url: "http://10.0.220.145:7474/browser/"
+                timeout: 1s
+              - title: "Neo4j Fast Test"
+                url: "http://10.0.220.145:7475/browser/"
                 timeout: 1s
 
-  - name: Media&Misc.
-    columns:
-      - size: small
-        widgets:
-          # Miscellaneous Services Monitoring
+          # Filebrowser
           - type: monitor
             size: small
-            title: "Miscellaneous Services"
+            title: "Filebrowser"
             cache: 3s
             sites:
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
+              - title: "NAS Filebrowser"
+                url: "http://10.0.220.145:8080"
                 timeout: 1s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 1s
-              - title: "GhostBoard"
-                url: "http://10.0.2.247:8081/"
+              - title: "Misc Host Filebrowser"
+                url: "http://10.0.2.247:8080/"
                 timeout: 1s
               - title: "Minecraft Host Filebrowser"
                 url: "http://10.0.0.155:8080"
                 timeout: 1s
 
-      - size: full
+      - size: small
         widgets:
-          # Media Services Monitoring
+          # Media Services
           - type: monitor
             size: small
             title: "Media Services"
@@ -206,28 +184,18 @@ pages:
 
       - size: small
         widgets:
-          # Markets - Crypto
-          - type: markets
-            title: "Crypto"
-            markets:
-              - symbol: BTC-USD
-                name: Bitcoin
-              - symbol: SOL-USD
-                name: Solana
-              - symbol: ETH-USD
-                name: Ethereum
-
-          # Markets - Stocks
-          - type: markets
-            title: "Stocks"
-            markets:
-              - symbol: TSLA
-                name: Tesla
-              - symbol: MSTR
-                name: MicroStrategy
-              - symbol: NVDA
-                name: NVIDIA
-              - symbol: AMD
-                name: AMD
-              - symbol: SSK
-                name: SSK 
+          # Miscellaneous Services
+          - type: monitor
+            size: small
+            title: "Miscellaneous"
+            cache: 3s
+            sites:
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "GhostBoard"
+                url: "http://10.0.2.247:8081/"
+                timeout: 1s 
