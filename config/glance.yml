@@ -31,21 +31,20 @@ pages:
     columns:
       - size: small
         widgets:
-          # Docker-Management
+          # Filebrowser
           - type: monitor
             size: small
-            title: "Docker-Management"
+            title: "Filebrowser"
             cache: 3s
             sites:
-              - title: "Portainer Master"
-                url: "http://10.0.9.28:9000"
+              - title: "NAS Filebrowser"
+                url: "http://10.0.220.145:8080"
                 timeout: 1s
-              - title: "Portainer NAS"
-                url: "https://10.0.220.145:31015"
+              - title: "Misc Host Filebrowser"
+                url: "http://10.0.2.247:8080/"
                 timeout: 1s
-                allow-insecure: true
-              - title: "Semaphore"
-                url: "http://10.0.153.222:3000/"
+              - title: "Minecraft Host Filebrowser"
+                url: "http://10.0.0.155:8080"
                 timeout: 1s
 
           # External Services
@@ -104,6 +103,23 @@ pages:
                 url: "http://10.0.0.136:81"
                 timeout: 1s
 
+          # Docker-Management
+          - type: monitor
+            size: small
+            title: "Docker-Management"
+            cache: 3s
+            sites:
+              - title: "Portainer Master"
+                url: "http://10.0.9.28:9000"
+                timeout: 1s
+              - title: "Portainer NAS"
+                url: "https://10.0.220.145:31015"
+                timeout: 1s
+                allow-insecure: true
+              - title: "Semaphore"
+                url: "http://10.0.153.222:3000/"
+                timeout: 1s
+
           # NAS/Databases
           - type: monitor
             size: small
@@ -151,22 +167,6 @@ pages:
 
       - size: small
         widgets:
-          # Filebrowser
-          - type: monitor
-            size: small
-            title: "Filebrowser"
-            cache: 3s
-            sites:
-              - title: "NAS Filebrowser"
-                url: "http://10.0.220.145:8080"
-                timeout: 1s
-              - title: "Misc Host Filebrowser"
-                url: "http://10.0.2.247:8080/"
-                timeout: 1s
-              - title: "Minecraft Host Filebrowser"
-                url: "http://10.0.0.155:8080"
-                timeout: 1s
-
           # Media Services
           - type: monitor
             size: small
