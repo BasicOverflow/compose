@@ -23,7 +23,7 @@
 
     - name: Check if disk usage exceeds threshold
       set_fact:
-        disk_over_threshold: "{{ disk_usage.stdout | int >= disk_threshold }}"
+        disk_over_threshold: "{{ (disk_usage.stdout | int) >= (disk_threshold | int) }}"
 
     - name: Send email alert if disk usage exceeds threshold
       when: disk_over_threshold
