@@ -54,9 +54,6 @@ pages:
             title: "External Services"
             cache: 3s
             sites:
-              - title: "Nginx Proxy Manager"
-                url: "http://10.0.0.136:81"
-                timeout: 1s
               - title: "Cloudflare Dashboard"
                 url: "https://dash.cloudflare.com"
                 timeout: 1s
@@ -85,10 +82,10 @@ pages:
 
       - size: full
         widgets:
-          # Proxmox
+          # Proxmox/Main Infra
           - type: monitor
             size: small
-            title: "Proxmox"
+            title: "Proxmox/Main Infra"
             cache: 3s
             sites:
               - title: "Proxmox Aitherios"
@@ -103,25 +100,14 @@ pages:
                 url: "https://10.0.0.154:8006"
                 timeout: 1s
                 allow-insecure: true
-
-          # Kubernetes
-          - type: monitor
-            size: small
-            title: "Kubernetes"
-            cache: 3s
-            sites:
-              - title: "Rancher"
-                url: "https://10.0.1.50:443"
-                timeout: 1s
-                allow-insecure: true
-              - title: "Longhorn"
-                url: "http://10.0.1.51"
+              - title: "Nginx Proxy Manager"
+                url: "http://10.0.0.136:81"
                 timeout: 1s
 
-          # NAS
+          # NAS/Databases
           - type: monitor
             size: small
-            title: "NAS"
+            title: "NAS/Databases"
             cache: 3s
             sites:
               - title: "Truenas"
@@ -130,13 +116,6 @@ pages:
               - title: "Syncthing"
                 url: "http://10.0.220.145:8384"
                 timeout: 1s
-
-          # Database
-          - type: monitor
-            size: small
-            title: "Database"
-            cache: 3s
-            sites:
               - title: "Mongodb"
                 url: "http://10.0.220.145:27017"
                 timeout: 1s
@@ -154,6 +133,20 @@ pages:
                 timeout: 1s
               - title: "Neo4j Fast Test"
                 url: "http://10.0.220.145:7475/browser/"
+                timeout: 1s
+
+          # Kubernetes
+          - type: monitor
+            size: small
+            title: "Kubernetes"
+            cache: 3s
+            sites:
+              - title: "Rancher"
+                url: "https://10.0.1.50:443"
+                timeout: 1s
+                allow-insecure: true
+              - title: "Longhorn"
+                url: "http://10.0.1.51"
                 timeout: 1s
 
       - size: small
