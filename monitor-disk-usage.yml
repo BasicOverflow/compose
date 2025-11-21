@@ -3,7 +3,7 @@
   hosts: docker-vms
   become: yes
   vars:
-    disk_threshold: "{{ DISK_USAGE_THRESHOLD | default('85') | int }}"
+    disk_threshold: "{{ (DISK_USAGE_THRESHOLD | default('85')) | int }}"
     alert_email: "{{ ALERT_EMAIL }}"
 
   tasks:
@@ -17,21 +17,25 @@
       register: disk_details
       changed_when: false
 
+    - name: Convert disk usage to integer
+      set_fact:
+        disk_usage_int: "{{ disk_usage.stdout | int }}"
+
     - name: Display disk usage
       debug:
-        msg: "{{ inventory_hostname }} ({{ ansible_host }}): {{ disk_usage.stdout }}% used"
+        msg: "{{ inventory_hostname }} ({{ ansible_host }}): {{ disk_usage_int }}% used"
 
     - name: Check if disk usage exceeds threshold
       set_fact:
-        disk_over_threshold: "{{ (disk_usage.stdout | int) >= (disk_threshold | int) }}"
+        disk_over_threshold: "{{ disk_usage_int >= disk_threshold }}"
 
     - name: Send email alert if disk usage exceeds threshold
-      when: disk_over_threshold
+      when: disk_over_threshold | bool
       mail:
         to: "{{ alert_email }}"
         subject: "Disk Usage Alert: {{ inventory_hostname }} ({{ ansible_host }})"
         body: |
-          Disk usage on {{ inventory_hostname }} ({{ ansible_host }}) is {{ disk_usage.stdout }}%
+          Disk usage on {{ inventory_hostname }} ({{ ansible_host }}) is {{ disk_usage_int }}%
           
           Threshold: {{ disk_threshold }}%
           
@@ -42,6 +46,6 @@
       ignore_errors: yes
 
     - name: Fail if disk usage exceeds threshold
-      when: disk_over_threshold
+      when: disk_over_threshold | bool
       fail:
-        msg: "Disk usage on {{ inventory_hostname }} is {{ disk_usage.stdout }}%, exceeding threshold of {{ disk_threshold }}%"
+        msg: "Disk usage on {{ inventory_hostname }} is {{ disk_usage_int }}%, exceeding threshold of {{ disk_threshold }}%"
