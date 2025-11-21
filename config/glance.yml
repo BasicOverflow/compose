@@ -102,13 +102,6 @@ pages:
               - title: "Nginx Proxy Manager"
                 url: "http://10.0.0.136:81"
                 timeout: 1s
-
-          # Docker-Management
-          - type: monitor
-            size: small
-            title: "Docker-Management"
-            cache: 3s
-            sites:
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
                 timeout: 1s
