@@ -1,0 +1,85 @@
+---
+- name: Cleanup Docker and System Logs
+  hosts: docker-vms
+  become: yes
+
+  tasks:
+    - name: Prune unused Docker volumes
+      shell: docker volume prune -af
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Prune unused Docker images
+      shell: docker image prune -af
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Prune unused Docker containers
+      shell: docker container prune -f
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Prune Docker build cache
+      shell: docker builder prune -af
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up Docker container logs
+      shell: |
+        find /var/lib/docker/containers/ -name "*.log" -type f -delete
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Truncate Docker container log files (if logs still exist)
+      shell: |
+        truncate -s 0 /var/lib/docker/containers/*/*-json.log 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up systemd journal logs (keep last 7 days)
+      shell: journalctl --vacuum-time=7d
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up old systemd journal files
+      shell: |
+        find /var/log/journal -name "*.journal" -mtime +7 -delete 2>/dev/null || true
+        find /var/log/journal -name "*.journal~" -delete 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up /tmp directory (files older than 7 days)
+      shell: |
+        find /tmp -type f -atime +7 -delete 2>/dev/null || true
+        find /tmp -type d -empty -delete 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up /var/tmp directory (files older than 7 days)
+      shell: |
+        find /var/tmp -type f -atime +7 -delete 2>/dev/null || true
+        find /var/tmp -type d -empty -delete 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up old log files in /var/log
+      shell: |
+        find /var/log -name "*.log" -type f -mtime +30 -delete 2>/dev/null || true
+        find /var/log -name "*.gz" -type f -mtime +30 -delete 2>/dev/null || true
+        find /var/log -name "*.old" -type f -mtime +30 -delete 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up core dumps
+      shell: |
+        find /var/crash -type f -delete 2>/dev/null || true
+        find / -name "core.*" -type f -mtime +7 -delete 2>/dev/null || true
+      changed_when: false
+      ignore_errors: yes
+
+    - name: Clean up package manager cache (already done in other playbook, but safe to repeat)
+      shell: |
+        apt-get clean
+        apt-get autoclean
+      changed_when: false
+      ignore_errors: yes
