@@ -56,6 +56,22 @@ pages:
                 url: "https://github.com/BasicOverflow/compose"
                 timeout: 1s
 
+          # Miscellaneous Services
+          - type: monitor
+            size: small
+            title: "Miscellaneous"
+            cache: 3s
+            sites:
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "GhostBoard"
+                url: "http://10.0.2.247:8081/"
+                timeout: 1s
+
       - size: full
         widgets:
           # Proxmox
@@ -133,6 +149,8 @@ pages:
                 url: "http://10.0.220.145:7475/browser/"
                 timeout: 1s
 
+      - size: small
+        widgets:
           # Filebrowser
           - type: monitor
             size: small
@@ -149,8 +167,6 @@ pages:
                 url: "http://10.0.0.155:8080"
                 timeout: 1s
 
-      - size: small
-        widgets:
           # Media Services
           - type: monitor
             size: small
@@ -180,22 +196,4 @@ pages:
                 timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
-                timeout: 1s
-
-      - size: small
-        widgets:
-          # Miscellaneous Services
-          - type: monitor
-            size: small
-            title: "Miscellaneous"
-            cache: 3s
-            sites:
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
-                timeout: 1s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 1s
-              - title: "GhostBoard"
-                url: "http://10.0.2.247:8081/"
                 timeout: 1s 
