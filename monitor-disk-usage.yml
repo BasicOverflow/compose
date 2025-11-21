@@ -1,0 +1,47 @@
+---
+- name: Monitor Disk Usage on Docker VMs
+  hosts: docker-vms
+  become: yes
+  vars:
+    disk_threshold: "{{ DISK_USAGE_THRESHOLD | default('85') | int }}"
+    alert_email: "{{ ALERT_EMAIL }}"
+
+  tasks:
+    - name: Get disk usage percentage for root filesystem
+      shell: df -h / | awk 'NR==2 {print $5}' | sed 's/%//'
+      register: disk_usage
+      changed_when: false
+
+    - name: Get disk usage details
+      shell: df -h /
+      register: disk_details
+      changed_when: false
+
+    - name: Display disk usage
+      debug:
+        msg: "{{ inventory_hostname }} ({{ ansible_host }}): {{ disk_usage.stdout }}% used"
+
+    - name: Check if disk usage exceeds threshold
+      set_fact:
+        disk_over_threshold: "{{ disk_usage.stdout | int >= disk_threshold }}"
+
+    - name: Send email alert if disk usage exceeds threshold
+      when: disk_over_threshold
+      mail:
+        to: "{{ alert_email }}"
+        subject: "Disk Usage Alert: {{ inventory_hostname }} ({{ ansible_host }})"
+        body: |
+          Disk usage on {{ inventory_hostname }} ({{ ansible_host }}) is {{ disk_usage.stdout }}%
+          
+          Threshold: {{ disk_threshold }}%
+          
+          Disk Details:
+          {{ disk_details.stdout }}
+          
+          Please investigate and free up space.
+      ignore_errors: yes
+
+    - name: Fail if disk usage exceeds threshold
+      when: disk_over_threshold
+      fail:
+        msg: "Disk usage on {{ inventory_hostname }} is {{ disk_usage.stdout }}%, exceeding threshold of {{ disk_threshold }}%"
