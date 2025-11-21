@@ -1,0 +1,69 @@
+---
+- name: Check and Restart VPN if Needed
+  hosts: jellyfin-host
+  become: yes
+  vars:
+    expressvpn_container: "{{ EXPRESSVPN_CONTAINER_NAME | default('expressvpn') }}"
+    expected_status: "{{ VPN_EXPECTED_STATUS | default('Connected to USA - New Jersey - 1') }}"
+    alert_email: "{{ ALERT_EMAIL }}"
+
+  tasks:
+    - name: Check ExpressVPN status
+      shell: docker exec {{ expressvpn_container }} expressvpn status
+      register: vpn_status
+      failed_when: false
+      changed_when: false
+
+    - name: Display VPN status
+      debug:
+        var: vpn_status.stdout
+
+    - name: Check if VPN is connected correctly
+      set_fact:
+        vpn_connected: "{{ expected_status in vpn_status.stdout }}"
+
+    - name: Restart ExpressVPN container if not connected
+      when: not vpn_connected
+      block:
+        - name: Restart ExpressVPN container
+          shell: docker restart {{ expressvpn_container }}
+          register: restart_result
+
+        - name: Wait for VPN to reconnect
+          pause:
+            seconds: 30
+
+        - name: Re-check ExpressVPN status
+          shell: docker exec {{ expressvpn_container }} expressvpn status
+          register: vpn_status_after_restart
+          failed_when: false
+
+        - name: Check if VPN reconnected successfully
+          set_fact:
+            vpn_reconnected: "{{ expected_status in vpn_status_after_restart.stdout }}"
+
+        - name: Display reconnection status
+          debug:
+            var: vpn_status_after_restart.stdout
+
+    - name: Send email alert if VPN still not connected
+      when: not vpn_connected and (vpn_reconnected is not defined or not vpn_reconnected)
+      mail:
+        to: "{{ alert_email }}"
+        subject: "VPN Alert: ExpressVPN Not Connected"
+        body: |
+          VPN check failed on jellyfin-host (10.0.75.113)
+          
+          Expected status: {{ expected_status }}
+          Current status: {{ vpn_status.stdout if vpn_connected else (vpn_status_after_restart.stdout | default(vpn_status.stdout)) }}
+          
+          Container restart attempted: {{ 'Yes' if not vpn_connected else 'No' }}
+          Reconnection successful: {{ 'No' if (vpn_reconnected is not defined or not vpn_reconnected) else 'Yes' }}
+          
+          Please investigate manually.
+      ignore_errors: yes
+
+    - name: Fail if VPN not connected
+      fail:
+        msg: "VPN is not connected correctly. Expected: {{ expected_status }}"
+      when: not vpn_connected and (vpn_reconnected is not defined or not vpn_reconnected)
