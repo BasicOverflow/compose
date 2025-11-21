@@ -6,21 +6,29 @@
   tasks:
     - name: Prune unused Docker volumes
       shell: docker volume prune -af
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
     - name: Prune unused Docker images
       shell: docker image prune -af
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
     - name: Prune unused Docker containers
       shell: docker container prune -f
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
     - name: Prune Docker build cache
       shell: docker builder prune -af
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
@@ -38,6 +46,8 @@
 
     - name: Clean up systemd journal logs (keep last 7 days)
       shell: journalctl --vacuum-time=7d
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
@@ -67,6 +77,8 @@
         find /var/log -name "*.log" -type f -mtime +30 -delete 2>/dev/null || true
         find /var/log -name "*.gz" -type f -mtime +30 -delete 2>/dev/null || true
         find /var/log -name "*.old" -type f -mtime +30 -delete 2>/dev/null || true
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
@@ -74,10 +86,12 @@
       shell: |
         find /var/crash -type f -delete 2>/dev/null || true
         find / -name "core.*" -type f -mtime +7 -delete 2>/dev/null || true
+      async: 600
+      poll: 10
       changed_when: false
       ignore_errors: yes
 
-    - name: Clean up package manager cache (already done in other playbook, but safe to repeat)
+    - name: Clean up package manager cache
       shell: |
         apt-get clean
         apt-get autoclean
