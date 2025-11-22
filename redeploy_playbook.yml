@@ -1,0 +1,19 @@
+---
+- name: Pull Git Changes and Restart Docker Compose
+  hosts: deploy-host
+  become: yes
+  vars:
+    repo_url: "{{ GITHUB_REPO_URL }}"
+    branch: "{{ GITHUB_BRANCH }}"
+    deploy_dir: "{{ DEPLOY_DIR }}"
+
+  tasks:
+    - name: Pull latest changes from Git
+      git:
+        repo: "{{ repo_url }}"
+        dest: "{{ deploy_dir }}"
+        version: "{{ branch }}"
+        update: yes
+
+    - name: Restart Docker Compose services
+      shell: cd {{ deploy_dir }} && docker compose restart
