@@ -189,4 +189,7 @@ pages:
                 timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
+                timeout: 1s
+              - title: "Test"
+                url: "http://example.com"
                 timeout: 1s 
