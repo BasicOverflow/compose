@@ -1,6 +1,6 @@
 ---
 - name: Pull Git Changes and Restart Docker Compose
-  hosts: deploy-host
+  hosts: misc-host
   become: yes
   vars:
     repo_url: "{{ GITHUB_REPO_URL }}"
