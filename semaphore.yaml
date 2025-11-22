@@ -8,19 +8,19 @@ services:
     environment:
       # Database (BoltDB)
       SEMAPHORE_DB_DIALECT: bolt
-
       # Admin user (initial login)
       SEMAPHORE_ADMIN: admin
       SEMAPHORE_ADMIN_PASSWORD: iamroot6025
       SEMAPHORE_ADMIN_NAME: admin
       SEMAPHORE_ADMIN_EMAIL: admin@example.com
-
     volumes:
       # Semaphore config + BoltDB data
       - /home/peter/semaphore/config:/etc/semaphore:rw
-
       # Optional: playbook inventory
       - /home/peter/semaphore/inventory:/inventory:ro
-
       # Optional: SSH authorized keys for Semaphore jobs
       - /home/peter/semaphore/authorized_keys:/authorized-keys:ro
+      # Direct bind mount of host SSH keys - using this instead of authorized_keys folder
+      # This allows Semaphore to use the host's SSH keys directly without additional config
+      # Mounting to /root/.ssh so Semaphore can access id_rsa, id_rsa.pub, etc.
+      - /home/peter/.ssh:/root/.ssh:ro
