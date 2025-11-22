@@ -30,7 +30,7 @@
         disk_over_threshold: "{{ disk_usage_int >= disk_threshold }}"
 
     - name: Send email alert if disk usage exceeds threshold
-      when: disk_over_threshold | bool
+      when: disk_over_threshold == true
       mail:
         to: "{{ alert_email }}"
         subject: "Disk Usage Alert: {{ inventory_hostname }} ({{ ansible_host }})"
@@ -46,6 +46,6 @@
       ignore_errors: yes
 
     - name: Fail if disk usage exceeds threshold
-      when: disk_over_threshold | bool
+      when: disk_over_threshold == true
       fail:
         msg: "Disk usage on {{ inventory_hostname }} is {{ disk_usage_int }}%, exceeding threshold of {{ disk_threshold }}%"
