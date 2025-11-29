@@ -3,8 +3,8 @@ version: '3'
 services:
   pgadmin:
     user: root
-    container_name: pgadmin:8.11
-    image: dpage/pgadmin4:latest
+    container_name: pgadmin
+    image: dpage/pgadmin4:8.11
     restart: unless-stopped
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.com
