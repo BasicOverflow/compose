@@ -75,9 +75,6 @@ pages:
               - title: "Vault-Warden"
                 url: "https://vault.basicoverflow.com"
                 timeout: 1s
-              - title: "GhostBoard"
-                url: "http://10.0.2.247:8081/"
-                timeout: 1s
 
       - size: full
         widgets:
@@ -189,4 +186,4 @@ pages:
                 timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
-                timeout: 1s 
+                timeout: 1s
