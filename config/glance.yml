@@ -109,6 +109,12 @@ pages:
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
                 timeout: 1s
+              - title: "Prometheus"
+                url: "http://10.0.121.218:9090"
+                timeout: 1s
+              - title: "Grafana"
+                url: "http://10.0.121.218:3000"
+                timeout: 1s
 
           # NAS/Databases
           - type: monitor
