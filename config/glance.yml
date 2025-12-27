@@ -31,6 +31,22 @@ pages:
     columns:
       - size: small
         widgets:
+          # Infra Services
+          - type: monitor
+            size: small
+            title: "Infra Services"
+            cache: 3s
+            sites:
+              - title: "Prometheus"
+                url: "http://10.0.121.218:9090"
+                timeout: 1s
+              - title: "Grafana"
+                url: "http://10.0.121.218:3000"
+                timeout: 1s
+              - title: "Ray Dashboard"
+                url: "http://10.0.0.0:8265"
+                timeout: 1s
+
           # Filebrowser
           - type: monitor
             size: small
@@ -65,10 +81,10 @@ pages:
 
       - size: full
         widgets:
-          # Proxmox/Main Infra
+          # Main Infrastructure
           - type: monitor
             size: small
-            title: "Proxmox/Main Infra"
+            title: "Main Infrastructure"
             cache: 3s
             sites:
               - title: "Proxmox Aitherios"
@@ -95,12 +111,6 @@ pages:
                 allow-insecure: true
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
-                timeout: 1s
-              - title: "Prometheus"
-                url: "http://10.0.121.218:9090"
-                timeout: 1s
-              - title: "Grafana"
-                url: "http://10.0.121.218:3000"
                 timeout: 1s
 
           # Kubernetes
@@ -180,6 +190,9 @@ pages:
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
                 timeout: 1s
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
 
           # Public Apps
           - type: monitor
@@ -187,8 +200,8 @@ pages:
             title: "Public Apps"
             cache: 3s
             sites:
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
+              - title: "Immich (Public)"
+                url: "https://immich.basicoverflow.com"
                 timeout: 1s
               - title: "Vault-Warden"
                 url: "https://vault.basicoverflow.com"
