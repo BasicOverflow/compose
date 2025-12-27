@@ -63,19 +63,6 @@ pages:
                 url: "https://github.com/BasicOverflow/compose"
                 timeout: 1s
 
-          # Public Apps
-          - type: monitor
-            size: small
-            title: "Public Apps"
-            cache: 3s
-            sites:
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
-                timeout: 1s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 1s
-
       - size: full
         widgets:
           # Proxmox/Main Infra
@@ -116,6 +103,20 @@ pages:
                 url: "http://10.0.121.218:3000"
                 timeout: 1s
 
+          # Kubernetes
+          - type: monitor
+            size: small
+            title: "Kubernetes"
+            cache: 3s
+            sites:
+              - title: "Rancher"
+                url: "https://10.0.1.50:443"
+                timeout: 1s
+                allow-insecure: true
+              - title: "Longhorn"
+                url: "http://10.0.1.51"
+                timeout: 1s
+
           # NAS/Databases
           - type: monitor
             size: small
@@ -147,20 +148,6 @@ pages:
                 url: "http://10.0.220.145:7475/browser/"
                 timeout: 1s
 
-          # Kubernetes
-          - type: monitor
-            size: small
-            title: "Kubernetes"
-            cache: 3s
-            sites:
-              - title: "Rancher"
-                url: "https://10.0.1.50:443"
-                timeout: 1s
-                allow-insecure: true
-              - title: "Longhorn"
-                url: "http://10.0.1.51"
-                timeout: 1s
-
       - size: small
         widgets:
           # Media Services
@@ -181,15 +168,34 @@ pages:
               - title: "Prowlarr"
                 url: "http://10.0.75.113:9696"
                 timeout: 1s
-              - title: "Jellyfin (Public)"
-                url: "http://jellyfin.basicoverflow.com"
+              - title: "Jellyfin"
+                url: "http://10.0.75.113:8096"
                 timeout: 1s
-              - title: "Jellyseer (Public)"
-                url: "http://jellyseer.basicoverflow.com"
+              - title: "Jellyseerr"
+                url: "http://10.0.75.113:5055"
                 timeout: 1s
               - title: "ExpressVPN"
                 url: "http://10.0.75.113:8080"
                 timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
+                timeout: 1s
+
+          # Public Apps
+          - type: monitor
+            size: small
+            title: "Public Apps"
+            cache: 3s
+            sites:
+              - title: "Immich"
+                url: "http://10.0.220.145:2283"
+                timeout: 1s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "Jellyfin (Public)"
+                url: "http://jellyfin.basicoverflow.com"
+                timeout: 1s
+              - title: "Jellyseer (Public)"
+                url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
