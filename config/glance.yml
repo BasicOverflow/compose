@@ -46,6 +46,9 @@ pages:
               - title: "Ray Dashboard"
                 url: "http://10.0.0.0:8265"
                 timeout: 1s
+              - title: "GitLab"
+                url: "http://10.0.1.52"
+                timeout: 1s
 
           # Filebrowser
           - type: monitor
