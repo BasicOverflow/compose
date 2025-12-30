@@ -44,7 +44,7 @@ pages:
                 url: "http://10.0.121.218:3000"
                 timeout: 1s
               - title: "Ray Dashboard"
-                url: "http://10.0.0.0:8265"
+                url: "http://10.0.1.53:8265"
                 timeout: 1s
               - title: "GitLab"
                 url: "http://10.0.1.52"
