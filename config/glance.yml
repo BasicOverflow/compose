@@ -43,12 +43,6 @@ pages:
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 1s
-              - title: "Ray Dashboard"
-                url: "http://10.0.1.53:8265"
-                timeout: 1s
-              - title: "GitLab"
-                url: "http://10.0.1.52"
-                timeout: 1s
 
           # Filebrowser
           - type: monitor
@@ -128,6 +122,12 @@ pages:
                 allow-insecure: true
               - title: "Longhorn"
                 url: "http://10.0.1.51"
+                timeout: 1s
+              - title: "GitLab"
+                url: "http://10.0.1.52"
+                timeout: 1s
+              - title: "Ray Dashboard"
+                url: "http://10.0.1.53:8265"
                 timeout: 1s
 
           # NAS/Databases
