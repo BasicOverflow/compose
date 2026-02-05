@@ -102,10 +102,6 @@ pages:
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
                 timeout: 1s
-              - title: "Portainer NAS"
-                url: "https://10.0.220.145:31015"
-                timeout: 1s
-                allow-insecure: true
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
                 timeout: 1s
@@ -139,6 +135,10 @@ pages:
               - title: "Truenas"
                 url: "http://10.0.220.145"
                 timeout: 1s
+              - title: "Portainer NAS"
+                url: "https://10.0.220.145:31015"
+                timeout: 1s
+                allow-insecure: true
               - title: "Syncthing"
                 url: "http://10.0.220.145:8384"
                 timeout: 1s
