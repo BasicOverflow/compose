@@ -69,8 +69,8 @@ pages:
               - title: "Cloudflare Dashboard"
                 url: "https://dash.cloudflare.com"
                 timeout: 1s
-              - title: "Google Domains"
-                url: "https://domains.google"
+              - title: "Squarespace"
+                url: "https://login.squarespace.com/"
                 timeout: 1s
               - title: "Homelab Github"
                 url: "https://github.com/BasicOverflow/compose"
