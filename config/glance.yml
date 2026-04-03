@@ -116,6 +116,9 @@ pages:
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
                 timeout: 1s
+              - title: "Pi-hole"
+                url: "http://10.0.0.53/admin/"
+                timeout: 1s
               - title: "UniFi Gateway Console"
                 url: "https://unifi.ui.com/"
                 timeout: 1s
