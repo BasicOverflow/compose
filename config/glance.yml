@@ -37,16 +37,16 @@ pages:
             title: "Public Apps"
             cache: 3s
             sites:
-              - title: "Immich (Public)"
+              - title: "Immich"
                 url: "https://immich.basicoverflow.com"
                 timeout: 1s
               - title: "Vault-Warden"
                 url: "https://vault.basicoverflow.com"
                 timeout: 1s
-              - title: "Jellyfin (Public)"
+              - title: "Jellyfin"
                 url: "http://jellyfin.basicoverflow.com"
                 timeout: 1s
-              - title: "Jellyseer (Public)"
+              - title: "Jellyseer"
                 url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
 
