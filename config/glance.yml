@@ -31,17 +31,23 @@ pages:
     columns:
       - size: small
         widgets:
-          # Infra Services
+          # Public Apps
           - type: monitor
             size: small
-            title: "Infra Services"
+            title: "Public Apps"
             cache: 3s
             sites:
-              - title: "Prometheus"
-                url: "http://10.0.121.218:9090"
+              - title: "Immich (Public)"
+                url: "https://immich.basicoverflow.com"
                 timeout: 1s
-              - title: "Grafana"
-                url: "http://10.0.121.218:3000"
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 1s
+              - title: "Jellyfin (Public)"
+                url: "http://jellyfin.basicoverflow.com"
+                timeout: 1s
+              - title: "Jellyseer (Public)"
+                url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
 
           # Filebrowser
@@ -60,21 +66,18 @@ pages:
                 url: "http://10.0.0.155:8080"
                 timeout: 1s
 
-          # External Services
-          - type: monitor
+          # External Services (links only — no reachability checks)
+          - type: bookmarks
             size: small
             title: "External Services"
-            cache: 3s
-            sites:
-              - title: "Cloudflare Dashboard"
-                url: "https://dash.cloudflare.com"
-                timeout: 1s
-              - title: "Squarespace"
-                url: "https://login.squarespace.com/"
-                timeout: 1s
-              - title: "Homelab Github"
-                url: "https://github.com/BasicOverflow/compose"
-                timeout: 1s
+            groups:
+              - links:
+                  - title: "Cloudflare Dashboard"
+                    url: "https://dash.cloudflare.com"
+                  - title: "Squarespace"
+                    url: "https://login.squarespace.com/"
+                  - title: "Homelab Github"
+                    url: "https://github.com/BasicOverflow/compose"
 
       - size: full
         widgets:
@@ -102,6 +105,14 @@ pages:
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
                 timeout: 1s
+              - title: "Portainer NAS"
+                url: "https://10.0.220.145:31015"
+                timeout: 1s
+                allow-insecure: true
+              - title: "Portainer NAS"
+                url: "https://10.0.220.145:31015"
+                timeout: 1s
+                allow-insecure: true
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
                 timeout: 1s
@@ -121,12 +132,6 @@ pages:
                 allow-insecure: true
               - title: "Longhorn"
                 url: "http://10.0.1.51"
-                timeout: 1s
-              - title: "GitLab"
-                url: "http://10.0.1.52"
-                timeout: 1s
-              - title: "Ray Dashboard"
-                url: "http://10.0.1.53:8265"
                 timeout: 1s
 
           # NAS/Databases
@@ -166,6 +171,25 @@ pages:
 
       - size: small
         widgets:
+          # Infra Services
+          - type: monitor
+            size: small
+            title: "Infra Services"
+            cache: 3s
+            sites:
+              - title: "Prometheus"
+                url: "http://10.0.121.218:9090"
+                timeout: 1s
+              - title: "Grafana"
+                url: "http://10.0.121.218:3000"
+                timeout: 1s
+              - title: "GitLab"
+                url: "http://10.0.1.52"
+                timeout: 1s
+              - title: "Ray Dashboard"
+                url: "http://10.0.1.53:8265"
+                timeout: 1s
+
           # Media Services
           - type: monitor
             size: small
@@ -198,23 +222,4 @@ pages:
                 timeout: 1s
               - title: "Immich"
                 url: "http://10.0.220.145:2283"
-                timeout: 1s
-
-          # Public Apps
-          - type: monitor
-            size: small
-            title: "Public Apps"
-            cache: 3s
-            sites:
-              - title: "Immich (Public)"
-                url: "https://immich.basicoverflow.com"
-                timeout: 1s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 1s
-              - title: "Jellyfin (Public)"
-                url: "http://jellyfin.basicoverflow.com"
-                timeout: 1s
-              - title: "Jellyseer (Public)"
-                url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
