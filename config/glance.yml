@@ -84,7 +84,7 @@ pages:
           # Main Infrastructure
           - type: monitor
             size: small
-            title: "Main Infrastructure"
+            title: "Main Infrastructure & Networking"
             cache: 3s
             sites:
               - title: "Proxmox Aitherios"
@@ -105,10 +105,6 @@ pages:
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
                 timeout: 1s
-              - title: "Portainer NAS"
-                url: "https://10.0.220.145:31015"
-                timeout: 1s
-                allow-insecure: true
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
                 timeout: 1s
@@ -185,7 +181,7 @@ pages:
                 timeout: 1s
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
-                timeout: 1s
+                timeout: 3s
               - title: "GitLab"
                 url: "http://10.0.1.52"
                 timeout: 1s
