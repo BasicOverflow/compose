@@ -46,7 +46,7 @@ pages:
               - title: "Jellyfin"
                 url: "http://jellyfin.basicoverflow.com"
                 timeout: 1s
-              - title: "Jellyseer"
+              - title: "Seer"
                 url: "http://jellyseer.basicoverflow.com"
                 timeout: 1s
 
@@ -210,8 +210,8 @@ pages:
               - title: "Jellyfin"
                 url: "http://10.0.75.113:8096"
                 timeout: 1s
-              - title: "Jellyseerr"
-                url: "http://10.0.75.113:5055"
+              - title: "Seer"
+                url: "http://10.0.75.55:5055"
                 timeout: 1s
               - title: "ExpressVPN"
                 url: "http://10.0.75.113:8080"
