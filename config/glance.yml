@@ -182,8 +182,8 @@ pages:
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 3s
-              - title: "GitLab"
-                url: "http://10.0.1.52"
+              - title: "Gitea"
+                url: "http://10.0.1.52:3000"
                 timeout: 1s
               - title: "Ray Dashboard"
                 url: "http://10.0.1.53:8265"
