@@ -186,7 +186,7 @@ pages:
                 url: "http://10.0.0.52:3000"
                 timeout: 1s
               - title: "Ray Dashboard"
-                url: "http://10.0.1.53:8265"
+                url: "http://10.0.1.52:8265"
                 timeout: 1s
 
           # Media Services

@@ -32,3 +32,7 @@
     - name: Restart Docker Compose if no previous commit (first run)
       when: commit_before.stdout == ""
       shell: cd {{ deploy_dir }} && docker compose restart
+
+
+
+
