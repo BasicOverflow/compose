@@ -188,6 +188,9 @@ pages:
               - title: "Ray Dashboard"
                 url: "http://10.0.1.52:8265"
                 timeout: 1s
+              - title: "Open WebUI"
+                url: "http://10.0.0.54:8080"
+                timeout: 1s
 
           # Media Services
           - type: monitor
