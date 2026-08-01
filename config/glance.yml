@@ -99,6 +99,10 @@ pages:
                 url: "https://10.0.0.154:8006"
                 timeout: 1s
                 allow-insecure: true
+              - title: "Proxmox Home-Media"
+                url: "https://10.0.0.20:8006"
+                timeout: 1s
+                allow-insecure: true
               - title: "Nginx Proxy Manager"
                 url: "http://10.0.0.136:81"
                 timeout: 1s
@@ -184,6 +188,9 @@ pages:
                 timeout: 3s
               - title: "Gitea"
                 url: "http://10.0.0.52:3000"
+                timeout: 1s
+              - title: "Gitea Mirror"
+                url: "http://10.0.0.55:4321"
                 timeout: 1s
               - title: "Ray Dashboard"
                 url: "http://10.0.1.52:8265"
