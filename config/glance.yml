@@ -223,9 +223,6 @@ pages:
               - title: "Seer"
                 url: "http://10.0.75.55:5055"
                 timeout: 1s
-              - title: "ExpressVPN"
-                url: "http://10.0.75.113:8080"
-                timeout: 1s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
                 timeout: 1s
