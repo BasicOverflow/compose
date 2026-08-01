@@ -116,6 +116,12 @@ pages:
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
                 timeout: 1s
+              - title: "Gitea"
+                url: "http://10.0.0.52:3000"
+                timeout: 1s
+              - title: "Gitea Mirror"
+                url: "http://10.0.0.55:4321"
+                timeout: 1s
               - title: "Pi-hole"
                 url: "http://10.0.0.53/admin/"
                 timeout: 1s
@@ -186,12 +192,6 @@ pages:
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 3s
-              - title: "Gitea"
-                url: "http://10.0.0.52:3000"
-                timeout: 1s
-              - title: "Gitea Mirror"
-                url: "http://10.0.0.55:4321"
-                timeout: 1s
               - title: "Ray Dashboard"
                 url: "http://10.0.1.52:8265"
                 timeout: 1s
