@@ -162,8 +162,11 @@ pages:
               - title: "Mongodb"
                 url: "http://10.0.220.145:27017"
                 timeout: 1s
-              - title: "Minio Console"
+              - title: "Minio Fast Console"
                 url: "http://10.0.220.145:9001/"
+                timeout: 1s
+              - title: "Minio Slow Console"
+                url: "http://10.0.220.145:9003/"
                 timeout: 1s
               - title: "Admin-Mongo"
                 url: "http://10.0.2.247:1234/"
