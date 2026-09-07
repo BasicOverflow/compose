@@ -26,6 +26,9 @@ theme:
       contrast-multiplier: 1.2
 
 # Pages configuration
+# Monitor notes: Glance checks many sites concurrently (worker pool).
+# Use cache >= 2m, timeout >= 10s, and check-url to cheap health endpoints
+# so heavy SPAs / TLS do not false-timeout under parallel load.
 pages:
   - name: Homelab
     columns:
@@ -35,36 +38,36 @@ pages:
           - type: monitor
             size: small
             title: "Public Apps"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "Immich"
                 url: "https://immich.basicoverflow.com"
-                timeout: 3s
+                timeout: 10s
               - title: "Vault-Warden"
                 url: "https://vault.basicoverflow.com"
-                timeout: 3s
+                timeout: 10s
               - title: "Jellyfin"
                 url: "http://jellyfin.basicoverflow.com"
-                timeout: 3s
+                timeout: 10s
               - title: "Seer"
                 url: "http://jellyseer.basicoverflow.com"
-                timeout: 3s
+                timeout: 10s
 
           # Filebrowser
           - type: monitor
             size: small
             title: "Filebrowser"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "NAS Filebrowser"
                 url: "http://10.0.220.145:8080"
-                timeout: 3s
+                timeout: 10s
               - title: "Misc Host Filebrowser"
                 url: "http://10.0.2.247:8080/"
-                timeout: 3s
+                timeout: 10s
               - title: "Minecraft Host Filebrowser"
                 url: "http://10.0.0.155:8080"
-                timeout: 3s
+                timeout: 10s
 
           # External Services (links only — no reachability checks)
           - type: bookmarks
@@ -78,6 +81,8 @@ pages:
                     url: "https://login.squarespace.com/"
                   - title: "Homelab Github"
                     url: "https://github.com/BasicOverflow/compose"
+                  - title: "UniFi Gateway Console"
+                    url: "https://unifi.ui.com/"
 
       - size: full
         widgets:
@@ -85,107 +90,110 @@ pages:
           - type: monitor
             size: small
             title: "Main Infrastructure & Networking"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "Proxmox Aitherios"
                 url: "https://10.0.0.225:8006"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Proxmox Sterianos"
                 url: "https://10.0.0.10:8006"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Proxmox Phidios"
                 url: "https://10.0.0.154:8006"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Proxmox Home-Media"
                 url: "https://10.0.0.20:8006"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Nginx Proxy Manager"
                 url: "http://10.0.0.136:81"
-                timeout: 3s
+                timeout: 10s
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
-                timeout: 3s
+                timeout: 10s
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
-                timeout: 3s
+                timeout: 10s
               - title: "Gitea"
                 url: "http://10.0.0.52:3000"
-                timeout: 3s
+                timeout: 10s
               - title: "Gitea Mirror"
                 url: "http://10.0.0.55:4321"
-                timeout: 3s
+                timeout: 10s
               - title: "Pi-hole"
                 url: "http://10.0.0.53/admin/"
-                timeout: 3s
-              - title: "UniFi Gateway Console"
-                url: "https://unifi.ui.com/"
-                timeout: 3s
+                check-url: "http://10.0.0.53/admin/login"
+                timeout: 10s
 
           # Kubernetes
           - type: monitor
             size: small
             title: "Kubernetes"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "Rancher"
                 url: "https://10.0.1.50:443"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Longhorn"
                 url: "http://10.0.1.51"
-                timeout: 3s
+                timeout: 10s
 
           # NAS/Databases
           - type: monitor
             size: small
             title: "NAS/Databases"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "Truenas"
                 url: "http://10.0.220.145"
-                timeout: 3s
+                timeout: 10s
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
-                timeout: 3s
+                timeout: 10s
                 allow-insecure: true
               - title: "Syncthing"
                 url: "http://10.0.220.145:8384"
-                timeout: 3s
+                check-url: "http://10.0.220.145:8384/rest/noauth/health"
+                timeout: 10s
               - title: "Mongodb"
                 url: "http://10.0.220.145:27017"
-                timeout: 3s
+                timeout: 10s
               - title: "Minio Fast Console"
                 url: "http://10.0.220.145:9001/"
-                timeout: 3s
+                timeout: 10s
               - title: "Minio Slow Console"
                 url: "http://10.0.220.145:9003/"
-                timeout: 3s
+                timeout: 10s
               - title: "Admin-Mongo"
                 url: "http://10.0.2.247:1234/"
-                timeout: 3s
+                timeout: 10s
               - title: "WhoDB"
                 url: "http://10.0.2.55:8080/"
-                timeout: 3s
+                timeout: 10s
               - title: "Neo4j Slow Test"
                 url: "http://10.0.220.145:7474/browser/"
-                timeout: 3s
+                check-url: "http://10.0.220.145:7474"
+                timeout: 10s
               - title: "Neo4j Fast Test"
                 url: "http://10.0.220.145:7475/browser/"
-                timeout: 3s
+                check-url: "http://10.0.220.145:7475"
+                timeout: 10s
               - title: "Qdrant Fast"
                 url: "http://10.0.220.145:6333/dashboard"
-                timeout: 3s
+                check-url: "http://10.0.220.145:6333/readyz"
+                timeout: 10s
               - title: "Qdrant Slow"
                 url: "http://10.0.220.145:6335/dashboard"
-                timeout: 3s
+                check-url: "http://10.0.220.145:6335/readyz"
+                timeout: 10s
 
       - size: small
         widgets:
@@ -193,48 +201,50 @@ pages:
           - type: monitor
             size: small
             title: "Infra Services"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "Prometheus"
                 url: "http://10.0.121.218:9090"
-                timeout: 3s
+                check-url: "http://10.0.121.218:9090/-/healthy"
+                timeout: 10s
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
-                timeout: 3s
+                timeout: 10s
               - title: "Ray Dashboard"
                 url: "http://10.0.1.52:8265"
-                timeout: 3s
+                check-url: "http://10.0.1.52:8265/api/version"
+                timeout: 10s
               - title: "Open WebUI"
                 url: "http://10.0.0.54:8080"
-                timeout: 3s
+                timeout: 10s
 
           # Media Services
           - type: monitor
             size: small
             title: "Media Services"
-            cache: 30s
+            cache: 2m
             sites:
               - title: "qBittorrent"
                 url: "http://10.0.75.113:8080"
-                timeout: 3s
+                timeout: 10s
               - title: "Radarr"
                 url: "http://10.0.75.113:7878"
-                timeout: 3s
+                timeout: 10s
               - title: "Sonarr"
                 url: "http://10.0.75.113:8989"
-                timeout: 3s
+                timeout: 10s
               - title: "Prowlarr"
                 url: "http://10.0.75.113:9696"
-                timeout: 3s
+                timeout: 10s
               - title: "Jellyfin"
                 url: "http://10.0.75.113:8096"
-                timeout: 3s
+                timeout: 10s
               - title: "Seer"
                 url: "http://10.0.75.55:5055"
-                timeout: 3s
+                timeout: 10s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
-                timeout: 3s
+                timeout: 10s
               - title: "Immich"
                 url: "http://10.0.220.145:2283"
-                timeout: 3s
+                timeout: 10s
