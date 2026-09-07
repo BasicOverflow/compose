@@ -217,6 +217,10 @@ pages:
               - title: "Open WebUI"
                 url: "http://10.0.0.54:8080"
                 timeout: 10s
+              - title: "DeepSeek Harness · token PLHk2FRho505VRBBu-U16yEXl6ibbmJe"
+                url: "http://10.0.0.57:3081/"
+                check-url: "http://10.0.0.57:3081/_gateway/healthz"
+                timeout: 10s
 
           # Media Services
           - type: monitor
