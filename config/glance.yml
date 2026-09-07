@@ -180,6 +180,12 @@ pages:
               - title: "Neo4j Fast Test"
                 url: "http://10.0.220.145:7475/browser/"
                 timeout: 1s
+              - title: "Qdrant Fast"
+                url: "http://10.0.220.145:6333/dashboard"
+                timeout: 1s
+              - title: "Qdrant Slow"
+                url: "http://10.0.220.145:6335/dashboard"
+                timeout: 1s
 
       - size: small
         widgets:
