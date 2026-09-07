@@ -35,36 +35,36 @@ pages:
           - type: monitor
             size: small
             title: "Public Apps"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "Immich"
                 url: "https://immich.basicoverflow.com"
-                timeout: 1s
+                timeout: 3s
               - title: "Vault-Warden"
                 url: "https://vault.basicoverflow.com"
-                timeout: 1s
+                timeout: 3s
               - title: "Jellyfin"
                 url: "http://jellyfin.basicoverflow.com"
-                timeout: 1s
+                timeout: 3s
               - title: "Seer"
                 url: "http://jellyseer.basicoverflow.com"
-                timeout: 1s
+                timeout: 3s
 
           # Filebrowser
           - type: monitor
             size: small
             title: "Filebrowser"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "NAS Filebrowser"
                 url: "http://10.0.220.145:8080"
-                timeout: 1s
+                timeout: 3s
               - title: "Misc Host Filebrowser"
                 url: "http://10.0.2.247:8080/"
-                timeout: 1s
+                timeout: 3s
               - title: "Minecraft Host Filebrowser"
                 url: "http://10.0.0.155:8080"
-                timeout: 1s
+                timeout: 3s
 
           # External Services (links only — no reachability checks)
           - type: bookmarks
@@ -85,107 +85,107 @@ pages:
           - type: monitor
             size: small
             title: "Main Infrastructure & Networking"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "Proxmox Aitherios"
                 url: "https://10.0.0.225:8006"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Proxmox Sterianos"
                 url: "https://10.0.0.10:8006"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Proxmox Phidios"
                 url: "https://10.0.0.154:8006"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Proxmox Home-Media"
                 url: "https://10.0.0.20:8006"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Nginx Proxy Manager"
                 url: "http://10.0.0.136:81"
-                timeout: 1s
+                timeout: 3s
               - title: "Portainer Master"
                 url: "http://10.0.9.28:9000"
-                timeout: 1s
+                timeout: 3s
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Semaphore"
                 url: "http://10.0.153.222:3000/"
-                timeout: 1s
+                timeout: 3s
               - title: "Gitea"
                 url: "http://10.0.0.52:3000"
-                timeout: 1s
+                timeout: 3s
               - title: "Gitea Mirror"
                 url: "http://10.0.0.55:4321"
-                timeout: 1s
+                timeout: 3s
               - title: "Pi-hole"
                 url: "http://10.0.0.53/admin/"
-                timeout: 1s
+                timeout: 3s
               - title: "UniFi Gateway Console"
                 url: "https://unifi.ui.com/"
-                timeout: 1s
+                timeout: 3s
 
           # Kubernetes
           - type: monitor
             size: small
             title: "Kubernetes"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "Rancher"
                 url: "https://10.0.1.50:443"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Longhorn"
                 url: "http://10.0.1.51"
-                timeout: 1s
+                timeout: 3s
 
           # NAS/Databases
           - type: monitor
             size: small
             title: "NAS/Databases"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "Truenas"
                 url: "http://10.0.220.145"
-                timeout: 1s
+                timeout: 3s
               - title: "Portainer NAS"
                 url: "https://10.0.220.145:31015"
-                timeout: 1s
+                timeout: 3s
                 allow-insecure: true
               - title: "Syncthing"
                 url: "http://10.0.220.145:8384"
-                timeout: 1s
+                timeout: 3s
               - title: "Mongodb"
                 url: "http://10.0.220.145:27017"
-                timeout: 1s
+                timeout: 3s
               - title: "Minio Fast Console"
                 url: "http://10.0.220.145:9001/"
-                timeout: 1s
+                timeout: 3s
               - title: "Minio Slow Console"
                 url: "http://10.0.220.145:9003/"
-                timeout: 1s
+                timeout: 3s
               - title: "Admin-Mongo"
                 url: "http://10.0.2.247:1234/"
-                timeout: 1s
+                timeout: 3s
               - title: "WhoDB"
                 url: "http://10.0.2.55:8080/"
-                timeout: 1s
+                timeout: 3s
               - title: "Neo4j Slow Test"
                 url: "http://10.0.220.145:7474/browser/"
-                timeout: 1s
+                timeout: 3s
               - title: "Neo4j Fast Test"
                 url: "http://10.0.220.145:7475/browser/"
-                timeout: 1s
+                timeout: 3s
               - title: "Qdrant Fast"
                 url: "http://10.0.220.145:6333/dashboard"
-                timeout: 1s
+                timeout: 3s
               - title: "Qdrant Slow"
                 url: "http://10.0.220.145:6335/dashboard"
-                timeout: 1s
+                timeout: 3s
 
       - size: small
         widgets:
@@ -193,48 +193,48 @@ pages:
           - type: monitor
             size: small
             title: "Infra Services"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "Prometheus"
                 url: "http://10.0.121.218:9090"
-                timeout: 1s
+                timeout: 3s
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 3s
               - title: "Ray Dashboard"
                 url: "http://10.0.1.52:8265"
-                timeout: 1s
+                timeout: 3s
               - title: "Open WebUI"
                 url: "http://10.0.0.54:8080"
-                timeout: 1s
+                timeout: 3s
 
           # Media Services
           - type: monitor
             size: small
             title: "Media Services"
-            cache: 3s
+            cache: 30s
             sites:
               - title: "qBittorrent"
                 url: "http://10.0.75.113:8080"
-                timeout: 1s
+                timeout: 3s
               - title: "Radarr"
                 url: "http://10.0.75.113:7878"
-                timeout: 1s
+                timeout: 3s
               - title: "Sonarr"
                 url: "http://10.0.75.113:8989"
-                timeout: 1s
+                timeout: 3s
               - title: "Prowlarr"
                 url: "http://10.0.75.113:9696"
-                timeout: 1s
+                timeout: 3s
               - title: "Jellyfin"
                 url: "http://10.0.75.113:8096"
-                timeout: 1s
+                timeout: 3s
               - title: "Seer"
                 url: "http://10.0.75.55:5055"
-                timeout: 1s
+                timeout: 3s
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
-                timeout: 1s
+                timeout: 3s
               - title: "Immich"
                 url: "http://10.0.220.145:2283"
-                timeout: 1s
+                timeout: 3s
