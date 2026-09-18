@@ -372,24 +372,6 @@ pages:
                 url: "http://lexis-prediction-github.placeholder.invalid"
                 timeout: 10s
 
-          - type: monitor
-            size: small
-            title: "Lexis Misc"
-            cache: 2m
-            sites:
-              - title: "Internal · Gitea playground"
-                url: "http://10.0.0.52:3000/admin/lexis-playground"
-                timeout: 10s
-              - title: "Internal · shared Postgres — placeholder"
-                url: "http://lexis-misc-postgres.placeholder.invalid"
-                timeout: 10s
-              - title: "Internal · shared MinIO / proxy ops — placeholder"
-                url: "http://lexis-misc-ops.placeholder.invalid"
-                timeout: 10s
-              - title: "External · GitHub — placeholder"
-                url: "http://lexis-misc-github.placeholder.invalid"
-                timeout: 10s
-
       # —— Right: other projects ——
       - size: small
         widgets:
