@@ -293,47 +293,116 @@ pages:
                 url: "https://github.com/BasicOverflow/rayify"
                 timeout: 10s
 
-      # —— Center: Lexis ——
+      # —— Center: Lexis (one section per domain) ——
       - size: full
         widgets:
           - type: monitor
             size: small
-            title: "Lexis"
+            title: "Lexis Markets"
             cache: 2m
             sites:
-              - title: "Internal · Markets Serve docs"
+              - title: "Internal · Serve docs"
                 url: "http://10.0.1.52:8000/markets/docs"
                 timeout: 10s
-              - title: "Internal · Gitea lexis-markets"
+              - title: "Internal · Gitea repo"
                 url: "http://10.0.0.52:3000/admin/lexis-markets"
                 timeout: 10s
-              - title: "Internal · Gitea lexis-playground"
-                url: "http://10.0.0.52:3000/admin/lexis-playground"
-                timeout: 10s
-              - title: "Internal · MinIO Fast bucket lexis-markets"
+              - title: "Internal · MinIO Fast bucket"
                 url: "http://10.0.220.145:9001/browser/lexis-markets"
                 check-url: "http://10.0.220.145:9000/minio/health/live"
                 timeout: 10s
-              - title: "Internal · MinIO Slow bucket lexis-retail"
+              - title: "Internal · UI — placeholder"
+                url: "http://lexis-markets-ui.placeholder.invalid"
+                timeout: 10s
+              - title: "External · GitHub — placeholder"
+                url: "http://lexis-markets-github.placeholder.invalid"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Lexis Retail"
+            cache: 2m
+            sites:
+              - title: "Internal · MinIO Slow bucket"
                 url: "http://10.0.220.145:9003/browser/lexis-retail"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
-              - title: "Internal · MinIO Slow bucket lexis-news"
+              - title: "Internal · Serve docs — placeholder"
+                url: "http://lexis-retail-docs.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · Gitea repo — placeholder"
+                url: "http://lexis-retail-gitea.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · UI — placeholder"
+                url: "http://lexis-retail-ui.placeholder.invalid"
+                timeout: 10s
+              - title: "External · GitHub — placeholder"
+                url: "http://lexis-retail-github.placeholder.invalid"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Lexis News"
+            cache: 2m
+            sites:
+              - title: "Internal · MinIO Slow bucket"
                 url: "http://10.0.220.145:9003/browser/lexis-news"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
-              - title: "Internal · MinIO Slow bucket lexis-prediction"
+              - title: "Internal · Serve docs — placeholder"
+                url: "http://lexis-news-docs.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · Gitea repo — placeholder"
+                url: "http://lexis-news-gitea.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · UI — placeholder"
+                url: "http://lexis-news-ui.placeholder.invalid"
+                timeout: 10s
+              - title: "External · GitHub — placeholder"
+                url: "http://lexis-news-github.placeholder.invalid"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Lexis Prediction"
+            cache: 2m
+            sites:
+              - title: "Internal · MinIO Slow bucket"
                 url: "http://10.0.220.145:9003/browser/lexis-prediction"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
-              - title: "Internal · Retail UI — placeholder"
-                url: "http://lexis-retail-ui.placeholder.invalid"
+              - title: "Internal · Serve docs — placeholder"
+                url: "http://lexis-prediction-docs.placeholder.invalid"
                 timeout: 10s
-              - title: "Internal · News UI — placeholder"
-                url: "http://lexis-news-ui.placeholder.invalid"
+              - title: "Internal · Gitea repo — placeholder"
+                url: "http://lexis-prediction-gitea.placeholder.invalid"
                 timeout: 10s
-              - title: "Internal · Prediction UI — placeholder"
+              - title: "Internal · UI — placeholder"
                 url: "http://lexis-prediction-ui.placeholder.invalid"
+                timeout: 10s
+              - title: "External · GitHub — placeholder"
+                url: "http://lexis-prediction-github.placeholder.invalid"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Lexis Misc"
+            cache: 2m
+            sites:
+              - title: "Internal · Gitea playground"
+                url: "http://10.0.0.52:3000/admin/lexis-playground"
+                timeout: 10s
+              - title: "Internal · shared Postgres — placeholder"
+                url: "http://lexis-misc-postgres.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · shared MinIO / proxy ops — placeholder"
+                url: "http://lexis-misc-ops.placeholder.invalid"
+                timeout: 10s
+              - title: "Internal · UI — placeholder"
+                url: "http://lexis-misc-ui.placeholder.invalid"
+                timeout: 10s
+              - title: "External · GitHub — placeholder"
+                url: "http://lexis-misc-github.placeholder.invalid"
                 timeout: 10s
 
       # —— Right: other projects ——
