@@ -257,16 +257,6 @@ pages:
                 url: "http://10.0.75.113:8501/"
                 timeout: 10s
 
-          - type: bookmarks
-            size: small
-            title: "Hosted Apps · placeholders"
-            groups:
-              - links:
-                  - title: "WireGuard admin — placeholder"
-                    url: "http://10.0.173.26"
-                  - title: "Minecraft panel — placeholder"
-                    url: "http://10.0.0.155:8080"
-
   - name: Projects
     width: wide
     columns:
