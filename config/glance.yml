@@ -267,10 +267,6 @@ pages:
             title: "Ray / ray-hive"
             cache: 2m
             sites:
-              - title: "Internal · Ray Dashboard"
-                url: "http://10.0.1.52:8265"
-                check-url: "http://10.0.1.52:8265/api/version"
-                timeout: 10s
               - title: "Internal · ray-hive repo / docs"
                 url: "http://10.0.0.52:3000/admin/ray-hive"
                 timeout: 10s
@@ -385,10 +381,6 @@ pages:
                 timeout: 10s
               - title: "Internal · API — placeholder"
                 url: "http://athena-api.placeholder.invalid"
-                timeout: 10s
-              - title: "Internal · training Ray jobs"
-                url: "http://10.0.1.52:8265/#/jobs"
-                check-url: "http://10.0.1.52:8265/api/version"
                 timeout: 10s
               - title: "External · generative-stock-prediction (GitHub)"
                 url: "https://github.com/BasicOverflow/generative-stock-prediction"
