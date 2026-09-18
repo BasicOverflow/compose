@@ -229,12 +229,6 @@ pages:
               - title: "Immich (LAN)"
                 url: "http://10.0.220.145:2283"
                 timeout: 10s
-              - title: "GhostBoard"
-                url: "http://10.0.2.247:8081"
-                timeout: 10s
-              - title: "SFTPGo"
-                url: "http://10.0.2.247:8888"
-                timeout: 10s
 
           - type: monitor
             size: small
@@ -334,43 +328,45 @@ pages:
 
           - type: bookmarks
             size: small
-            title: "Lexis · placeholders"
+            title: "Lexis · domain UIs (beyond Markets)"
             groups:
               - links:
-                  - title: "Lexis Retail UI/API — placeholder"
+                  - title: "Lexis Retail UI — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Lexis News UI/API — placeholder"
+                  - title: "Lexis News UI — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Lexis Prediction UI/API — placeholder"
+                  - title: "Lexis Prediction UI — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Lexis supervisor UI — placeholder"
-                    url: "http://10.0.0.58"
 
       # —— Right: other project placeholders ——
       - size: small
         widgets:
           - type: bookmarks
             size: small
-            title: "Athena · placeholders"
+            title: "Athena · UI / API / training"
             groups:
               - links:
-                  - title: "Athena API — placeholder"
+                  - title: "Athena UI — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Athena UI / dashboard — placeholder"
+                  - title: "Athena API — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Athena training dashboard — placeholder"
                     url: "http://10.0.1.52:8265"
 
           - type: bookmarks
             size: small
-            title: "Unified Wiki · placeholders"
+            title: "Unified Wiki · UI"
             groups:
               - links:
-                  - title: "Wiki UI — placeholder"
+                  - title: "Unified Wiki UI — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Wiki API — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "Book logging — placeholder"
+
+          - type: bookmarks
+            size: small
+            title: "Nini Billing · front end"
+            groups:
+              - links:
+                  - title: "Nini Billing HTML front end — placeholder"
                     url: "http://10.0.0.52:3000"
 
           - type: bookmarks
@@ -384,15 +380,3 @@ pages:
                     url: "http://10.0.0.52:3000"
                   - title: "Qdrant Fast (shared)"
                     url: "http://10.0.220.145:6333/dashboard"
-
-          - type: bookmarks
-            size: small
-            title: "Nini Billing · placeholders"
-            groups:
-              - links:
-                  - title: "Billing HTML front end — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "Billing API — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "Load-model / job status — placeholder"
-                    url: "http://10.0.1.52:8265"
