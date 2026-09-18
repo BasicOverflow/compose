@@ -197,10 +197,10 @@ pages:
 
       - size: small
         widgets:
-          # Infra Services
+          # Monitoring
           - type: monitor
             size: small
-            title: "Infra Services"
+            title: "Monitoring"
             cache: 2m
             sites:
               - title: "Prometheus"
@@ -210,22 +210,34 @@ pages:
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 10s
-              - title: "Ray Dashboard"
-                url: "http://10.0.1.52:8265"
-                check-url: "http://10.0.1.52:8265/api/version"
-                timeout: 10s
+
+          # Hosted Apps (third-party services on the lab)
+          - type: monitor
+            size: small
+            title: "Hosted Apps"
+            cache: 2m
+            sites:
               - title: "Open WebUI"
                 url: "http://10.0.0.54:8080"
+                timeout: 10s
+              - title: "SearXNG"
+                url: "http://10.0.0.56:8888"
                 timeout: 10s
               - title: "DeepSeek Harness · token PLHk2FRho505VRBBu-U16yEXl6ibbmJe"
                 url: "http://10.0.0.57:3081/"
                 check-url: "http://10.0.0.57:3081/_gateway/healthz"
                 timeout: 10s
+              - title: "Immich (LAN)"
+                url: "http://10.0.220.145:2283"
+                timeout: 10s
+              - title: "GhostBoard"
+                url: "http://10.0.2.247:8081"
+                timeout: 10s
 
-          # Media Services
+          # Media Stack (hosted)
           - type: monitor
             size: small
-            title: "Media Services"
+            title: "Media Stack"
             cache: 2m
             sites:
               - title: "qBittorrent"
@@ -249,6 +261,52 @@ pages:
               - title: "MeTube"
                 url: "http://10.0.75.113:8501/"
                 timeout: 10s
-              - title: "Immich"
-                url: "http://10.0.220.145:2283"
+
+          # Ray / ray-hive
+          - type: monitor
+            size: small
+            title: "Ray / ray-hive"
+            cache: 2m
+            sites:
+              - title: "Ray Dashboard"
+                url: "http://10.0.1.52:8265"
+                check-url: "http://10.0.1.52:8265/api/version"
                 timeout: 10s
+              - title: "Ray Serve"
+                url: "http://10.0.1.52:8000"
+                timeout: 10s
+
+          # Lexis (custom project)
+          - type: monitor
+            size: small
+            title: "Lexis"
+            cache: 2m
+            sites:
+              - title: "Lexis Markets Serve"
+                url: "http://10.0.1.52:8000/markets"
+                timeout: 10s
+              - title: "Gitea · lexis-markets"
+                url: "http://10.0.0.52:3000/admin/lexis-markets"
+                timeout: 10s
+              - title: "MinIO Fast (markets bucket)"
+                url: "http://10.0.220.145:9001/"
+                timeout: 10s
+
+          # Custom projects — live links + placeholders for in-progress work
+          - type: bookmarks
+            size: small
+            title: "Custom Projects"
+            groups:
+              - links:
+                  - title: "rayify (GitHub)"
+                    url: "https://github.com/BasicOverflow/rayify"
+                  - title: "rayify creds (Gitea)"
+                    url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
+                  - title: "Athena — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Unified Wiki — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "YT Transcriber — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Nini Billing — placeholder"
+                    url: "http://10.0.0.52:3000"
