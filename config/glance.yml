@@ -327,13 +327,13 @@ pages:
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
               - title: "Internal · Retail UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://lexis-retail-ui.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · News UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://lexis-news-ui.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · Prediction UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://lexis-prediction-ui.placeholder.invalid"
                 timeout: 10s
 
       # —— Right: other projects ——
@@ -345,10 +345,10 @@ pages:
             cache: 2m
             sites:
               - title: "Internal · UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://athena-ui.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · API — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://athena-api.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · training Ray jobs"
                 url: "http://10.0.1.52:8265/#/jobs"
@@ -364,7 +364,7 @@ pages:
             cache: 2m
             sites:
               - title: "Internal · Wiki UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://unified-wiki-ui.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · Qdrant Slow wiki RAG"
                 url: "http://10.0.220.145:6335/dashboard"
@@ -377,7 +377,7 @@ pages:
             cache: 2m
             sites:
               - title: "Internal · HTML front end — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://nini-billing-ui.placeholder.invalid"
                 timeout: 10s
 
           - type: monitor
@@ -386,10 +386,10 @@ pages:
             cache: 2m
             sites:
               - title: "Internal · API — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://yt-transcriber-api.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · admin UI — placeholder"
-                url: "http://10.0.0.52:3000"
+                url: "http://yt-transcriber-admin.placeholder.invalid"
                 timeout: 10s
               - title: "Internal · Qdrant Slow vectors"
                 url: "http://10.0.220.145:6335/dashboard"
