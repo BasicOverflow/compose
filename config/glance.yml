@@ -267,18 +267,18 @@ pages:
             title: "Ray / ray-hive"
             cache: 2m
             sites:
-              - title: "Ray Dashboard"
+              - title: "Internal · Ray Dashboard"
                 url: "http://10.0.1.52:8265"
                 check-url: "http://10.0.1.52:8265/api/version"
                 timeout: 10s
-              - title: "Ray Serve · Markets docs"
-                url: "http://10.0.1.52:8000/markets/docs"
-                timeout: 10s
-              - title: "ray-hive repo / docs"
+              - title: "Internal · ray-hive repo / docs"
                 url: "http://10.0.0.52:3000/admin/ray-hive"
                 timeout: 10s
-              - title: "ray-hive packages (PyPI)"
+              - title: "Internal · ray-hive packages (PyPI)"
                 url: "http://10.0.0.52:3000/admin/-/packages/pypi/ray-hive"
+                timeout: 10s
+              - title: "External · ray-hive (GitHub)"
+                url: "https://github.com/BasicOverflow/ray-hive"
                 timeout: 10s
 
           - type: monitor
@@ -286,17 +286,12 @@ pages:
             title: "rayify"
             cache: 2m
             sites:
-              - title: "rayify creds (Gitea)"
+              - title: "Internal · rayify creds (Gitea)"
                 url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
                 timeout: 10s
-
-          - type: bookmarks
-            size: small
-            title: "rayify · external"
-            groups:
-              - links:
-                  - title: "rayify (GitHub)"
-                    url: "https://github.com/BasicOverflow/rayify"
+              - title: "External · rayify (GitHub)"
+                url: "https://github.com/BasicOverflow/rayify"
+                timeout: 10s
 
       # —— Center: Lexis ——
       - size: full
@@ -306,97 +301,94 @@ pages:
             title: "Lexis"
             cache: 2m
             sites:
-              - title: "Lexis Markets Serve · docs"
+              - title: "Internal · Markets Serve docs"
                 url: "http://10.0.1.52:8000/markets/docs"
                 timeout: 10s
-              - title: "Gitea · lexis-markets"
+              - title: "Internal · Gitea lexis-markets"
                 url: "http://10.0.0.52:3000/admin/lexis-markets"
                 timeout: 10s
-              - title: "MinIO Fast · bucket lexis-markets"
+              - title: "Internal · Gitea lexis-playground"
+                url: "http://10.0.0.52:3000/admin/lexis-playground"
+                timeout: 10s
+              - title: "Internal · MinIO Fast bucket lexis-markets"
                 url: "http://10.0.220.145:9001/browser/lexis-markets"
                 check-url: "http://10.0.220.145:9000/minio/health/live"
                 timeout: 10s
-
-          - type: monitor
-            size: small
-            title: "Lexis · domain UIs (beyond Markets)"
-            cache: 2m
-            sites:
-              - title: "Lexis Retail UI — placeholder"
-                url: "http://10.0.0.52:3000"
-                timeout: 10s
-              - title: "Lexis News UI — placeholder"
-                url: "http://10.0.0.52:3000"
-                timeout: 10s
-              - title: "Lexis Prediction UI — placeholder"
-                url: "http://10.0.0.52:3000"
-                timeout: 10s
-              - title: "MinIO Slow · bucket lexis-retail"
+              - title: "Internal · MinIO Slow bucket lexis-retail"
                 url: "http://10.0.220.145:9003/browser/lexis-retail"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
-              - title: "MinIO Slow · bucket lexis-news"
+              - title: "Internal · MinIO Slow bucket lexis-news"
                 url: "http://10.0.220.145:9003/browser/lexis-news"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
-              - title: "MinIO Slow · bucket lexis-prediction"
+              - title: "Internal · MinIO Slow bucket lexis-prediction"
                 url: "http://10.0.220.145:9003/browser/lexis-prediction"
                 check-url: "http://10.0.220.145:9002/minio/health/live"
                 timeout: 10s
+              - title: "Internal · Retail UI — placeholder"
+                url: "http://10.0.0.52:3000"
+                timeout: 10s
+              - title: "Internal · News UI — placeholder"
+                url: "http://10.0.0.52:3000"
+                timeout: 10s
+              - title: "Internal · Prediction UI — placeholder"
+                url: "http://10.0.0.52:3000"
+                timeout: 10s
 
-      # —— Right: other project placeholders ——
+      # —— Right: other projects ——
       - size: small
         widgets:
           - type: monitor
             size: small
-            title: "Athena · UI / API / training"
+            title: "Athena"
             cache: 2m
             sites:
-              - title: "Athena UI — placeholder"
+              - title: "Internal · UI — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
-              - title: "Athena API — placeholder"
+              - title: "Internal · API — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
-              - title: "Athena training · Ray jobs"
+              - title: "Internal · training Ray jobs"
                 url: "http://10.0.1.52:8265/#/jobs"
                 check-url: "http://10.0.1.52:8265/api/version"
                 timeout: 10s
 
           - type: monitor
             size: small
-            title: "Unified Wiki · UI"
+            title: "Unified Wiki"
             cache: 2m
             sites:
-              - title: "Unified Wiki UI — placeholder"
+              - title: "Internal · Wiki UI — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
-              - title: "Qdrant Slow · wiki RAG store"
+              - title: "Internal · Qdrant Slow wiki RAG"
                 url: "http://10.0.220.145:6335/dashboard"
                 check-url: "http://10.0.220.145:6335/readyz"
                 timeout: 10s
 
           - type: monitor
             size: small
-            title: "Nini Billing · front end"
+            title: "Nini Billing"
             cache: 2m
             sites:
-              - title: "Nini Billing HTML front end — placeholder"
+              - title: "Internal · HTML front end — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
 
           - type: monitor
             size: small
-            title: "YT Transcriber · placeholders"
+            title: "YT Transcriber"
             cache: 2m
             sites:
-              - title: "Transcriber API — placeholder"
+              - title: "Internal · API — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
-              - title: "Transcriber admin UI — placeholder"
+              - title: "Internal · admin UI — placeholder"
                 url: "http://10.0.0.52:3000"
                 timeout: 10s
-              - title: "Qdrant Slow · permanent vectors"
+              - title: "Internal · Qdrant Slow vectors"
                 url: "http://10.0.220.145:6335/dashboard"
                 check-url: "http://10.0.220.145:6335/readyz"
                 timeout: 10s
