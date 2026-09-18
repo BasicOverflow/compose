@@ -311,9 +311,6 @@ pages:
                 url: "http://10.0.220.145:9001/browser/lexis-markets"
                 check-url: "http://10.0.220.145:9000/minio/health/live"
                 timeout: 10s
-              - title: "Internal · UI — placeholder"
-                url: "http://lexis-markets-ui.placeholder.invalid"
-                timeout: 10s
               - title: "External · GitHub — placeholder"
                 url: "http://lexis-markets-github.placeholder.invalid"
                 timeout: 10s
@@ -332,9 +329,6 @@ pages:
                 timeout: 10s
               - title: "Internal · Gitea repo — placeholder"
                 url: "http://lexis-retail-gitea.placeholder.invalid"
-                timeout: 10s
-              - title: "Internal · UI — placeholder"
-                url: "http://lexis-retail-ui.placeholder.invalid"
                 timeout: 10s
               - title: "External · GitHub — placeholder"
                 url: "http://lexis-retail-github.placeholder.invalid"
@@ -355,9 +349,6 @@ pages:
               - title: "Internal · Gitea repo — placeholder"
                 url: "http://lexis-news-gitea.placeholder.invalid"
                 timeout: 10s
-              - title: "Internal · UI — placeholder"
-                url: "http://lexis-news-ui.placeholder.invalid"
-                timeout: 10s
               - title: "External · GitHub — placeholder"
                 url: "http://lexis-news-github.placeholder.invalid"
                 timeout: 10s
@@ -377,9 +368,6 @@ pages:
               - title: "Internal · Gitea repo — placeholder"
                 url: "http://lexis-prediction-gitea.placeholder.invalid"
                 timeout: 10s
-              - title: "Internal · UI — placeholder"
-                url: "http://lexis-prediction-ui.placeholder.invalid"
-                timeout: 10s
               - title: "External · GitHub — placeholder"
                 url: "http://lexis-prediction-github.placeholder.invalid"
                 timeout: 10s
@@ -397,9 +385,6 @@ pages:
                 timeout: 10s
               - title: "Internal · shared MinIO / proxy ops — placeholder"
                 url: "http://lexis-misc-ops.placeholder.invalid"
-                timeout: 10s
-              - title: "Internal · UI — placeholder"
-                url: "http://lexis-misc-ui.placeholder.invalid"
                 timeout: 10s
               - title: "External · GitHub — placeholder"
                 url: "http://lexis-misc-github.placeholder.invalid"
