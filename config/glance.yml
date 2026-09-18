@@ -274,14 +274,18 @@ pages:
               - title: "Ray Serve · Markets docs"
                 url: "http://10.0.1.52:8000/markets/docs"
                 timeout: 10s
+              - title: "ray-hive repo / docs"
+                url: "http://10.0.0.52:3000/admin/ray-hive"
+                timeout: 10s
+              - title: "ray-hive packages"
+                url: "http://10.0.0.52:3000/admin/-/packages"
+                timeout: 10s
 
           - type: bookmarks
             size: small
             title: "Ray / ray-hive · placeholders"
             groups:
               - links:
-                  - title: "ray-hive package / docs — placeholder"
-                    url: "http://10.0.0.52:3000"
                   - title: "ray-hive Serve apps — placeholder"
                     url: "http://10.0.1.52:8000/markets/docs"
 
