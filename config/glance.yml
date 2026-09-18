@@ -30,13 +30,13 @@ theme:
 # Use cache >= 2m, timeout >= 10s, and check-url to cheap health endpoints
 # so heavy SPAs / TLS do not false-timeout under parallel load.
 #
-# Layout: wide + small | full | small (3 columns). Homelab = platform/hosted;
-# Projects = custom projects + all placeholder widgets as separate sections.
+# Single wide page, 3 columns (small | full | small) so platform + hosted +
+# project placeholders are all visible without a second tab.
 pages:
   - name: Homelab
     width: wide
     columns:
-      # —— Left ——
+      # —— Left: public / tools / Ray ——
       - size: small
         widgets:
           - type: monitor
@@ -85,6 +85,41 @@ pages:
                 url: "http://10.0.121.218:3000"
                 timeout: 10s
 
+          - type: monitor
+            size: small
+            title: "Ray / ray-hive"
+            cache: 2m
+            sites:
+              - title: "Ray Dashboard"
+                url: "http://10.0.1.52:8265"
+                check-url: "http://10.0.1.52:8265/api/version"
+                timeout: 10s
+              - title: "Ray Serve · Markets docs"
+                url: "http://10.0.1.52:8000/markets/docs"
+                timeout: 10s
+
+          - type: bookmarks
+            size: small
+            title: "Ray / ray-hive · placeholders"
+            groups:
+              - links:
+                  - title: "ray-hive package / docs — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "ray-hive Serve apps — placeholder"
+                    url: "http://10.0.1.52:8000/markets/docs"
+
+          - type: bookmarks
+            size: small
+            title: "rayify"
+            groups:
+              - links:
+                  - title: "rayify (GitHub)"
+                    url: "https://github.com/BasicOverflow/rayify"
+                  - title: "rayify creds (Gitea)"
+                    url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
+                  - title: "rayify Portainer / compose UI — placeholder"
+                    url: "http://10.0.9.28:9000"
+
           - type: bookmarks
             size: small
             title: "External Services"
@@ -99,7 +134,7 @@ pages:
                   - title: "UniFi Gateway Console"
                     url: "https://unifi.ui.com/"
 
-      # —— Center ——
+      # —— Center: platform + Lexis ——
       - size: full
         widgets:
           - type: monitor
@@ -208,7 +243,34 @@ pages:
                 check-url: "http://10.0.220.145:6335/readyz"
                 timeout: 10s
 
-      # —— Right ——
+          - type: monitor
+            size: small
+            title: "Lexis"
+            cache: 2m
+            sites:
+              - title: "Lexis Markets Serve · docs"
+                url: "http://10.0.1.52:8000/markets/docs"
+                timeout: 10s
+              - title: "Gitea · lexis-markets"
+                url: "http://10.0.0.52:3000/admin/lexis-markets"
+                timeout: 10s
+              - title: "MinIO Fast (markets bucket)"
+                url: "http://10.0.220.145:9001/"
+                timeout: 10s
+
+          - type: bookmarks
+            size: small
+            title: "Lexis · domain UIs (beyond Markets)"
+            groups:
+              - links:
+                  - title: "Lexis Retail UI — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Lexis News UI — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Lexis Prediction UI — placeholder"
+                    url: "http://10.0.0.52:3000"
+
+      # —— Right: hosted + project placeholders ——
       - size: small
         widgets:
           - type: monitor
@@ -257,80 +319,6 @@ pages:
                 url: "http://10.0.75.113:8501/"
                 timeout: 10s
 
-  - name: Projects
-    width: wide
-    columns:
-      # —— Left: Ray / rayify ——
-      - size: small
-        widgets:
-          - type: monitor
-            size: small
-            title: "Ray / ray-hive"
-            cache: 2m
-            sites:
-              - title: "Ray Dashboard"
-                url: "http://10.0.1.52:8265"
-                check-url: "http://10.0.1.52:8265/api/version"
-                timeout: 10s
-              - title: "Ray Serve · Markets docs"
-                url: "http://10.0.1.52:8000/markets/docs"
-                timeout: 10s
-
-          - type: bookmarks
-            size: small
-            title: "Ray / ray-hive · placeholders"
-            groups:
-              - links:
-                  - title: "ray-hive package / docs — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "ray-hive Serve apps — placeholder"
-                    url: "http://10.0.1.52:8000/markets/docs"
-
-          - type: bookmarks
-            size: small
-            title: "rayify"
-            groups:
-              - links:
-                  - title: "rayify (GitHub)"
-                    url: "https://github.com/BasicOverflow/rayify"
-                  - title: "rayify creds (Gitea)"
-                    url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
-                  - title: "rayify Portainer / compose UI — placeholder"
-                    url: "http://10.0.9.28:9000"
-
-      # —— Center: Lexis ——
-      - size: full
-        widgets:
-          - type: monitor
-            size: small
-            title: "Lexis"
-            cache: 2m
-            sites:
-              - title: "Lexis Markets Serve · docs"
-                url: "http://10.0.1.52:8000/markets/docs"
-                timeout: 10s
-              - title: "Gitea · lexis-markets"
-                url: "http://10.0.0.52:3000/admin/lexis-markets"
-                timeout: 10s
-              - title: "MinIO Fast (markets bucket)"
-                url: "http://10.0.220.145:9001/"
-                timeout: 10s
-
-          - type: bookmarks
-            size: small
-            title: "Lexis · domain UIs (beyond Markets)"
-            groups:
-              - links:
-                  - title: "Lexis Retail UI — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "Lexis News UI — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "Lexis Prediction UI — placeholder"
-                    url: "http://10.0.0.52:3000"
-
-      # —— Right: other project placeholders ——
-      - size: small
-        widgets:
           - type: bookmarks
             size: small
             title: "Athena · UI / API / training"
