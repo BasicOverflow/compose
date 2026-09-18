@@ -30,13 +30,76 @@ theme:
 # Use cache >= 2m, timeout >= 10s, and check-url to cheap health endpoints
 # so heavy SPAs / TLS do not false-timeout under parallel load.
 #
-# Layout: width wide + two full columns (and a second page) so content
-# fills horizontally before stacking deep in one sidebar.
+# Layout: wide + small | full | small (3 columns). Homelab = platform/hosted;
+# Projects = custom projects + all placeholder widgets as separate sections.
 pages:
   - name: Homelab
     width: wide
     columns:
-      # —— Left: platform ——
+      # —— Left ——
+      - size: small
+        widgets:
+          - type: monitor
+            size: small
+            title: "Public Apps"
+            cache: 2m
+            sites:
+              - title: "Immich"
+                url: "https://immich.basicoverflow.com"
+                timeout: 10s
+              - title: "Vault-Warden"
+                url: "https://vault.basicoverflow.com"
+                timeout: 10s
+              - title: "Jellyfin"
+                url: "http://jellyfin.basicoverflow.com"
+                timeout: 10s
+              - title: "Seer"
+                url: "http://jellyseer.basicoverflow.com"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Filebrowser"
+            cache: 2m
+            sites:
+              - title: "NAS Filebrowser"
+                url: "http://10.0.220.145:8080"
+                timeout: 10s
+              - title: "Misc Host Filebrowser"
+                url: "http://10.0.2.247:8080/"
+                timeout: 10s
+              - title: "Minecraft Host Filebrowser"
+                url: "http://10.0.0.155:8080"
+                timeout: 10s
+
+          - type: monitor
+            size: small
+            title: "Monitoring"
+            cache: 2m
+            sites:
+              - title: "Prometheus"
+                url: "http://10.0.121.218:9090"
+                check-url: "http://10.0.121.218:9090/-/healthy"
+                timeout: 10s
+              - title: "Grafana"
+                url: "http://10.0.121.218:3000"
+                timeout: 10s
+
+          - type: bookmarks
+            size: small
+            title: "External Services"
+            groups:
+              - links:
+                  - title: "Cloudflare Dashboard"
+                    url: "https://dash.cloudflare.com"
+                  - title: "Squarespace"
+                    url: "https://login.squarespace.com/"
+                  - title: "Homelab Github"
+                    url: "https://github.com/BasicOverflow/compose"
+                  - title: "UniFi Gateway Console"
+                    url: "https://unifi.ui.com/"
+
+      # —— Center ——
       - size: full
         widgets:
           - type: monitor
@@ -145,54 +208,9 @@ pages:
                 check-url: "http://10.0.220.145:6335/readyz"
                 timeout: 10s
 
-          - type: monitor
-            size: small
-            title: "Monitoring"
-            cache: 2m
-            sites:
-              - title: "Prometheus"
-                url: "http://10.0.121.218:9090"
-                check-url: "http://10.0.121.218:9090/-/healthy"
-                timeout: 10s
-              - title: "Grafana"
-                url: "http://10.0.121.218:3000"
-                timeout: 10s
-
-          - type: bookmarks
-            size: small
-            title: "External Services"
-            groups:
-              - links:
-                  - title: "Cloudflare Dashboard"
-                    url: "https://dash.cloudflare.com"
-                  - title: "Squarespace"
-                    url: "https://login.squarespace.com/"
-                  - title: "Homelab Github"
-                    url: "https://github.com/BasicOverflow/compose"
-                  - title: "UniFi Gateway Console"
-                    url: "https://unifi.ui.com/"
-
-      # —— Right: hosted apps ——
-      - size: full
+      # —— Right ——
+      - size: small
         widgets:
-          - type: monitor
-            size: small
-            title: "Public Apps"
-            cache: 2m
-            sites:
-              - title: "Immich"
-                url: "https://immich.basicoverflow.com"
-                timeout: 10s
-              - title: "Vault-Warden"
-                url: "https://vault.basicoverflow.com"
-                timeout: 10s
-              - title: "Jellyfin"
-                url: "http://jellyfin.basicoverflow.com"
-                timeout: 10s
-              - title: "Seer"
-                url: "http://jellyseer.basicoverflow.com"
-                timeout: 10s
-
           - type: monitor
             size: small
             title: "Hosted Apps"
@@ -245,24 +263,9 @@ pages:
                 url: "http://10.0.75.113:8501/"
                 timeout: 10s
 
-          - type: monitor
-            size: small
-            title: "Filebrowser"
-            cache: 2m
-            sites:
-              - title: "NAS Filebrowser"
-                url: "http://10.0.220.145:8080"
-                timeout: 10s
-              - title: "Misc Host Filebrowser"
-                url: "http://10.0.2.247:8080/"
-                timeout: 10s
-              - title: "Minecraft Host Filebrowser"
-                url: "http://10.0.0.155:8080"
-                timeout: 10s
-
           - type: bookmarks
             size: small
-            title: "Hosted · placeholders"
+            title: "Hosted Apps · placeholders"
             groups:
               - links:
                   - title: "WireGuard admin — placeholder"
@@ -273,8 +276,8 @@ pages:
   - name: Projects
     width: wide
     columns:
-      # —— Left: live / active projects ——
-      - size: full
+      # —— Left: Ray / rayify ——
+      - size: small
         widgets:
           - type: monitor
             size: small
@@ -291,6 +294,16 @@ pages:
 
           - type: bookmarks
             size: small
+            title: "Ray / ray-hive · placeholders"
+            groups:
+              - links:
+                  - title: "ray-hive package / docs — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "ray-hive Serve apps — placeholder"
+                    url: "http://10.0.1.52:8000/markets/docs"
+
+          - type: bookmarks
+            size: small
             title: "rayify"
             groups:
               - links:
@@ -300,11 +313,10 @@ pages:
                     url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
                   - title: "rayify Portainer / compose UI — placeholder"
                     url: "http://10.0.9.28:9000"
-                  - title: "ray-hive package / docs — placeholder"
-                    url: "http://10.0.0.52:3000"
-                  - title: "ray-hive Serve apps — placeholder"
-                    url: "http://10.0.1.52:8000/markets/docs"
 
+      # —— Center: Lexis ——
+      - size: full
+        widgets:
           - type: monitor
             size: small
             title: "Lexis"
@@ -334,39 +346,50 @@ pages:
                   - title: "Lexis supervisor UI — placeholder"
                     url: "http://10.0.0.58"
 
-      # —— Right: in-progress project placeholders ——
-      - size: full
+      # —— Right: other project placeholders ——
+      - size: small
         widgets:
           - type: bookmarks
             size: small
-            title: "In-progress projects · placeholders"
+            title: "Athena · placeholders"
             groups:
-              - title: Athena
-                links:
+              - links:
                   - title: "Athena API — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Athena UI / dashboard — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Athena training dashboard — placeholder"
                     url: "http://10.0.1.52:8265"
-              - title: Unified Wiki
-                links:
+
+          - type: bookmarks
+            size: small
+            title: "Unified Wiki · placeholders"
+            groups:
+              - links:
                   - title: "Wiki UI — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Wiki API — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Book logging — placeholder"
                     url: "http://10.0.0.52:3000"
-              - title: YT Transcriber
-                links:
+
+          - type: bookmarks
+            size: small
+            title: "YT Transcriber · placeholders"
+            groups:
+              - links:
                   - title: "Transcriber API — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Transcriber admin UI — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Qdrant Fast (shared)"
                     url: "http://10.0.220.145:6333/dashboard"
-              - title: Nini Billing
-                links:
+
+          - type: bookmarks
+            size: small
+            title: "Nini Billing · placeholders"
+            groups:
+              - links:
                   - title: "Billing HTML front end — placeholder"
                     url: "http://10.0.0.52:3000"
                   - title: "Billing API — placeholder"
