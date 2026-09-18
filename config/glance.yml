@@ -233,6 +233,20 @@ pages:
               - title: "GhostBoard"
                 url: "http://10.0.2.247:8081"
                 timeout: 10s
+              - title: "SFTPGo"
+                url: "http://10.0.2.247:8888"
+                timeout: 10s
+
+          # Hosted extras — no public UI yet (placeholders)
+          - type: bookmarks
+            size: small
+            title: "Hosted Apps · placeholders"
+            groups:
+              - links:
+                  - title: "WireGuard admin — placeholder"
+                    url: "http://10.0.173.26"
+                  - title: "Minecraft panel — placeholder"
+                    url: "http://10.0.0.155:8080"
 
           # Media Stack (hosted)
           - type: monitor
@@ -276,6 +290,29 @@ pages:
                 url: "http://10.0.1.52:8000"
                 timeout: 10s
 
+          - type: bookmarks
+            size: small
+            title: "Ray / ray-hive · placeholders"
+            groups:
+              - links:
+                  - title: "ray-hive package / docs — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "ray-hive Serve apps — placeholder"
+                    url: "http://10.0.1.52:8000"
+
+          # rayify
+          - type: bookmarks
+            size: small
+            title: "rayify"
+            groups:
+              - links:
+                  - title: "rayify (GitHub)"
+                    url: "https://github.com/BasicOverflow/rayify"
+                  - title: "rayify creds (Gitea)"
+                    url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
+                  - title: "rayify Portainer / compose UI — placeholder"
+                    url: "http://10.0.9.28:9000"
+
           # Lexis (custom project)
           - type: monitor
             size: small
@@ -292,21 +329,68 @@ pages:
                 url: "http://10.0.220.145:9001/"
                 timeout: 10s
 
-          # Custom projects — live links + placeholders for in-progress work
           - type: bookmarks
             size: small
-            title: "Custom Projects"
+            title: "Lexis · placeholders"
             groups:
               - links:
-                  - title: "rayify (GitHub)"
-                    url: "https://github.com/BasicOverflow/rayify"
-                  - title: "rayify creds (Gitea)"
-                    url: "http://10.0.0.52:3000/admin/rayify_real_infra_creds"
-                  - title: "Athena — placeholder"
+                  - title: "Lexis Retail UI/API — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Unified Wiki — placeholder"
+                  - title: "Lexis News UI/API — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "YT Transcriber — placeholder"
+                  - title: "Lexis Prediction UI/API — placeholder"
                     url: "http://10.0.0.52:3000"
-                  - title: "Nini Billing — placeholder"
+                  - title: "Lexis supervisor UI — placeholder"
+                    url: "http://10.0.0.58"
+
+          # Athena
+          - type: bookmarks
+            size: small
+            title: "Athena · placeholders"
+            groups:
+              - links:
+                  - title: "Athena API — placeholder"
                     url: "http://10.0.0.52:3000"
+                  - title: "Athena UI / dashboard — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Athena training dashboard — placeholder"
+                    url: "http://10.0.1.52:8265"
+
+          # Unified Wiki
+          - type: bookmarks
+            size: small
+            title: "Unified Wiki · placeholders"
+            groups:
+              - links:
+                  - title: "Wiki UI — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Wiki API — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Book logging — placeholder"
+                    url: "http://10.0.0.52:3000"
+
+          # YouTube Transcriber
+          - type: bookmarks
+            size: small
+            title: "YT Transcriber · placeholders"
+            groups:
+              - links:
+                  - title: "Transcriber API — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Transcriber admin UI — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Qdrant collections (shared) — Fast"
+                    url: "http://10.0.220.145:6333/dashboard"
+
+          # Nini Billing
+          - type: bookmarks
+            size: small
+            title: "Nini Billing · placeholders"
+            groups:
+              - links:
+                  - title: "Billing HTML front end — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Billing API — placeholder"
+                    url: "http://10.0.0.52:3000"
+                  - title: "Load-model / job status — placeholder"
+                    url: "http://10.0.1.52:8265"
