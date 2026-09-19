@@ -83,6 +83,10 @@ pages:
               - title: "Grafana"
                 url: "http://10.0.121.218:3000"
                 timeout: 10s
+              - title: "Ray Dashboard"
+                url: "http://10.0.1.52:8265"
+                check-url: "http://10.0.1.52:8265/api/version"
+                timeout: 10s
 
           - type: bookmarks
             size: small
