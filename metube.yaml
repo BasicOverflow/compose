@@ -1,4 +1,3 @@
-
 services:
   metube:
     container_name: metube
@@ -6,13 +5,14 @@ services:
     environment:
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Berlin
-      - CUSTOM_DIRS=true             # enable UI directory selection
-      - CREATE_CUSTOM_DIRS=true      # allow creating new directories from UI
-      - DOWNLOAD_MODE=concurrent     # optional, downloads immediately
-      - MAX_CONCURRENT_DOWNLOADS=50  # optional, if using limited mode
+      - TZ=America/New_York
+      - CUSTOM_DIRS=true
+      - CREATE_CUSTOM_DIRS=true
+      - DOWNLOAD_MODE=limited
+      - MAX_CONCURRENT_DOWNLOADS=3
     volumes:
-      - /mnt/Stripe1TB/media/youtube_videos:/downloads/youtube_videos
+      - /mnt/Stripe1TB/media/youtube_videos:/downloads
     ports:
-      - 8501:8081
+      - "8501:8081"
     restart: unless-stopped
+    mem_limit: 1g
