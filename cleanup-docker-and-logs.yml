@@ -4,6 +4,9 @@
   become: yes
 
   tasks:
+    # Do NOT prune containers. Stopped app containers (e.g. metube after a crash)
+    # would be deleted and never come back until manually redeployed — this was
+    # wiping MeTube within ~1 week of each patch (playbook runs weekly).
     - name: Prune unused Docker volumes
       shell: docker volume prune -af
       async: 600
@@ -11,15 +14,8 @@
       changed_when: false
       ignore_errors: yes
 
-    - name: Prune unused Docker images
-      shell: docker image prune -af
-      async: 600
-      poll: 10
-      changed_when: false
-      ignore_errors: yes
-
-    - name: Prune unused Docker containers
-      shell: docker container prune -f
+    - name: Prune dangling Docker images only
+      shell: docker image prune -f
       async: 600
       poll: 10
       changed_when: false
@@ -32,13 +28,9 @@
       changed_when: false
       ignore_errors: yes
 
-    - name: Clean up Docker container logs
-      shell: |
-        find /var/lib/docker/containers/ -name "*.log" -type f -delete
-      changed_when: false
-      ignore_errors: yes
-
-    - name: Truncate Docker container log files (if logs still exist)
+    # Truncate only — deleting log inodes under /var/lib/docker/containers can
+    # confuse the daemon; truncation keeps the files Docker has open.
+    - name: Truncate Docker container log files
       shell: |
         truncate -s 0 /var/lib/docker/containers/*/*-json.log 2>/dev/null || true
       changed_when: false
@@ -95,5 +87,16 @@
       shell: |
         apt-get clean
         apt-get autoclean
+      changed_when: false
+      ignore_errors: yes
+
+    # After cleanup, recreate any exited jellyfin-stack services (path only exists
+    # on jellyfin-host). restart:unless-stopped covers crashes; this covers the
+    # case where a container was removed or left created-but-exited.
+    - name: Ensure jellyfin-stack services are up when compose file exists
+      shell: |
+        if [ -f /home/peter/jellyfin-stack/docker-compose.yml ]; then
+          docker compose -p jellyfin-stack -f /home/peter/jellyfin-stack/docker-compose.yml up -d
+        fi
       changed_when: false
       ignore_errors: yes
