@@ -414,6 +414,10 @@ pages:
               - title: "Internal · API swagger docs"
                 url: "http://10.0.17.73:8787/docs"
                 timeout: 10s
+              - title: "Internal · MinIO Fast bucket"
+                url: "http://10.0.220.145:9001/browser/nicks-lawn-billing"
+                check-url: "http://10.0.220.145:9000/minio/health/live"
+                timeout: 10s
 
           - type: monitor
             size: small
