@@ -408,11 +408,11 @@ pages:
             title: "Nini Billing"
             cache: 2m
             sites:
-              - title: "Internal · front end UI — placeholder"
-                url: "http://nini-billing-ui.placeholder.invalid"
+              - title: "Internal · front end UI"
+                url: "http://10.0.17.73:8787/data"
                 timeout: 10s
-              - title: "Internal · API swagger docs — placeholder"
-                url: "http://nini-billing-api-docs.placeholder.invalid"
+              - title: "Internal · API swagger docs"
+                url: "http://10.0.17.73:8787/docs"
                 timeout: 10s
 
           - type: monitor
