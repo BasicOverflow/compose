@@ -409,10 +409,10 @@ pages:
             cache: 2m
             sites:
               - title: "Internal · front end UI"
-                url: "http://10.0.17.73:8787/data"
+                url: "http://10.0.0.60:8787/data"
                 timeout: 10s
               - title: "Internal · API swagger docs"
-                url: "http://10.0.17.73:8787/docs"
+                url: "http://10.0.0.60:8787/docs"
                 timeout: 10s
               - title: "External · nicks_lawn_care_billing (GitHub)"
                 url: "https://github.com/BasicOverflow/nicks_lawn_care_billing"
